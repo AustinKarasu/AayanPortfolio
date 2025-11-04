@@ -265,11 +265,11 @@ html.loader-active { overflow: hidden; touch-action: none; }
 
 /* ===== Section Padding ===== */
 main, .projects, .skills-section, .about-section, .contact-section {
-  padding: 92px 18px 48px;
+    padding: 40px 18px 48px;
 }
 @media (max-width:760px) {
   main, .projects, .skills-section, .about-section, .contact-section {
-    padding: 74px 14px 34px;
+      padding: 40px 18px 48px;
   }
 }
 
@@ -329,3 +329,4 @@ main, .projects, .skills-section, .about-section, .contact-section {
 
 /* small cursor style (if you want different color / size) */
 .kg-cursor { color: #aef7c8; font-weight: 800; }
+
