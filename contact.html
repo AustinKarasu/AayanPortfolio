@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact • KarasuBerry</title>
+  <link rel="stylesheet" href="contact.css" />
+  <script src="contact.js" defer></script>
+</head>
+<script>
+  if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light");
+  }
+</script>
+
+<body class="dark">
+
+  <!-- Boot Loading Screen -->
+  <div id="loading-screen">
+    <div class="boot-wrap">
+      <div class="boot-icon">&lt;/&gt;</div>
+      <div class="boot-terminal">
+        <pre class="boot-log">
+// boot: KARASU-OS v9.3.1 • system init
+[CONTACT] module active ✓
+connecting to social network nodes...
+sync successful.
+        </pre>
+        <div class="boot-bar"><span></span></div>
+        <div class="boot-madeby">MADE BY AAYAN PARMAR AKA KARASUBERRY</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="brand">
+      <a href="home.html" class="logo-link">
+        <img src="images/logo.jpg" alt="KarasuBerry logo" class="logo" />
+      </a>
+      <span>KarasuBerry</span>
+    </div>
+    <div class="links" id="nav-links">
+      <a href="home.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="contact.html" class="active">Contact</a>
+      <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </div>
+    <button id="hamburger" aria-label="Open menu">☰</button>
+  </nav>
+
+  <!-- Contact Section -->
+  <section id="contact" class="container fade">
+    <h2 class="title">📬 Connect with Me</h2>
+    <p class="subtitle">Let’s collaborate, chat, or just vibe — choose your platform below.</p>
+
+    <div class="contact-grid">
+      <div class="contact-box" data-platform="instagram">
+        <img src="images/insta.png" alt="Instagram" class="contact-icon" />
+        <button onclick="window.open('https://instagram.com/AayanKarasu','_blank')">Add</button>
+      </div>
+
+      <div class="contact-box" data-platform="linkedin">
+        <img src="images/linkin.webp" alt="LinkedIn" class="contact-icon" />
+        <button onclick="window.open('https://linkedin.com/in/AayanKarasu','_blank')">Add</button>
+      </div>
+
+      <div class="contact-box" data-platform="youtube">
+        <img src="images/yt.webp" alt="YouTube" class="contact-icon" />
+        <button onclick="window.open('https://youtube.com/@KarasuBerry','_blank')">Add</button>
+      </div>
+
+      <div class="contact-box" data-platform="twitter">
+        <img src="images/twitter.webp" alt="Twitter (X)" class="contact-icon" />
+        <button onclick="window.open('https://twitter.com/KarasuBerry','_blank')">Add</button>
+      </div>
+
+      <div class="contact-box" data-platform="whatsapp">
+        <img src="images/whatsapp.webp" alt="WhatsApp" class="contact-icon" />
+        <button onclick="window.open('https://wa.me/9816157745','_blank')">Add</button>
+      </div>
+
+      <div class="contact-box" data-platform="email">
+        <img src="images/email.webp" alt="Email" class="contact-icon" />
+        <button onclick="window.location.href='mailto:yourname@example.com'">Add</button>
+      </div>
+
+      <div class="contact-box" data-platform="discord">
+        <img src="images/discord.jpg" alt="Discord" class="contact-icon" />
+        <button onclick="window.open('https://discord.gg/kmVE6dnX5H','_blank')">Add</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Animated Divider -->
+  <div class="divider">
+    <span>— Let’s Create Something Amazing —</span>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© <span id="year"></span> Aayan Parmar • KarasuBerry</p>
+  </footer>
+</body>
+</html>

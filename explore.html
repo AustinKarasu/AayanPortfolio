@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Explore • KarasuBerry</title>
+  <link rel="stylesheet" href="explore.css" />
+  <script src="explore.js" defer></script>
+</head>
+<script>
+  if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light");
+  }
+</script>
+
+<body class="dark">
+
+  <!-- Boot Loading Screen -->
+  <div id="loading-screen">
+    <div class="boot-wrap">
+      <div class="boot-icon">&lt;/&gt;</div>
+      <div class="boot-terminal">
+        <pre class="boot-log">
+// boot: KARASU-OS v9.3.1 • system init
+[EXPLORE] feed module active ✓
+loading content...
+sync successful.
+        </pre>
+        <div class="boot-bar"><span></span></div>
+        <div class="boot-madeby">MADE BY AAYAN PARMAR AKA KARASUBERRY</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Updates Bar -->
+  <div class="updates-bar">
+    <p id="updates-text">🚀 Explore KarasuBerry's latest videos, designs, and creations — powered by Aayan Parmar.</p>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="brand">
+      <a href="home.html" class="logo-link">
+        <img src="images/logo.jpg" alt="KarasuBerry logo" class="logo" />
+      </a>
+      <span>KarasuBerry</span>
+    </div>
+    <div class="links" id="nav-links">
+      <a href="home.html">Home</a>
+      <a href="explore.html" class="active">Explore</a>
+      <a href="contact.html">Contact</a>
+      <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </div>
+    <button id="hamburger" aria-label="Open menu">☰</button>
+  </nav>
+
+  <!-- Video Feed -->
+  <section id="video-feed" class="container fade">
+    <h2 class="title">🎥 Latest Videos & Edits</h2>
+    <div class="feed-grid">
+      <div class="post">
+        <img src="https://img.youtube.com/vi/pfPGyptVkwc/maxresdefault.jpg" alt="karn-edit" />
+        <div class="post-content">
+          <h3>Karn Edit | Kurushetra | kalki AD</h3>
+          <p>A cinematic edit of karn, the strongest warrior of mahabharat.</p>
+          <div class="post-meta"><span>#karnedit</span> • 11/4/2025</div>
+          <a href="https://youtu.be/pfPGyptVkwc" target="_blank" class="view-btn">▶ Watch on YouTube</a>
+        </div>
+      </div>
+
+      <div class="post">
+        <img src="https://img.youtube.com/vi/wY9Gi8b-R3g/maxresdefault.jpg" alt="alya-edit" />
+        <div class="post-content">
+          <h3>Alya Edit | Anime Edit | yeah!</h3>
+          <p>Alya hides her feelings in russian edit made on adobe ae</p>
+          <div class="post-meta"><span>#Cinematic</span> • 11/02/2025</div>
+          <a href="https://youtu.be/wY9Gi8b-R3g" target="_blank" class="view-btn">▶ Watch on YouTube</a>
+        </div>
+      </div>
+
+      <div class="post">
+        <img src="https://img.youtube.com/vi/oeAJZP3s7Q8/maxresdefault.jpg" alt="Gaming Edit" />
+        <div class="post-content">
+          <h3>Rover Edit • Cinematic Casual Edit</h3>
+          <p>Wuthering Waves, A edit on rover aka Lord Arbiter</p>
+          <div class="post-meta"><span>#WutheringWaves</span> • 11/01/2025</div>
+          <a href="https://youtu.be/oeAJZP3s7Q8" target="_blank" class="view-btn">▶ Watch on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="feed-divider">— Explore More —</div>
+
+  <section id="image-feed" class="container fade">
+  <h2 class="title">🖌️ Snapshots</h2>
+  <div class="feed-grid">
+    <div class="post image-post">
+      <img src="images/snap1.jpg" alt="snap-1" />
+      <div class="post-content">
+        <h3>Behind the scene of karn edit</h3>
+        <p>This thing is fun and beneficial,editing is love</p>
+        <div class="post-meta"><span>#behindscene</span> • 11/03/2025</div>
+        <button class="view-btn" data-img="images/snap1.jpg">👁 View</button>
+      </div>
+    </div>
+
+    <div class="post image-post">
+      <img src="images/snap2.jpg" alt="Overlay Pack" />
+      <div class="post-content">
+        <h3>Poor Cat</h3>
+        <p>She loves this i guess..</p>
+        <div class="post-meta"><span>#catfun</span> • 10/20/2025</div>
+        <button class="view-btn" data-img="images/snap2.jpg">👁 View</button>
+      </div>
+    </div>
+
+    <div class="post image-post">
+      <img src="images/snap3.jpg" alt="Certificate" />
+      <div class="post-content">
+        <h3>Wanna be krishna</h3>
+        <p>This look amazing in my perspective.</p>
+        <div class="post-meta"><span>#snap</span> • 11/01/2025</div>
+        <button class="view-btn" data-img="images/snap3.jpg">👁 View</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Image Modal -->
+<div id="img-modal" class="img-modal">
+  <span class="close">&times;</span>
+  <img id="modal-img" src="" alt="Preview" />
+</div>
+
+
+  <!-- Footer -->
+  <footer>
+    <p>© <span id="year"></span> Aayan Parmar • KarasuBerry</p>
+  </footer>
+
+</body>
+</html>

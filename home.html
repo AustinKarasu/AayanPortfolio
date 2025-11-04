@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KarasuBerry | Aayan Karasu</title>
+  <link rel="stylesheet" href="home.css" />
+  <script src="home.js" defer></script>
+</head>
+<script>
+  if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light");
+  }
+</script>
+
+<body class="dark">
+  <!-- Boot Loading Screen -->
+  <div id="loading-screen">
+    <div class="boot-wrap">
+      <div class="boot-icon">&lt;/&gt;</div>
+      <div class="boot-terminal">
+        <pre class="boot-log" id="boot-log">
+// boot: KARASU-OS v9.3.1 • system init
+[INIT] kernel: modules loaded ✓
+handshake: 0x7A9C → 0x8EEF  [SYN+ACK=OK]
+decrypting payload ██████████ 100%
+mount ram://tmpfs → /run/karasu (ro)
+tcp: 127.0.0.1:443 → LISTEN (tls_fallback=off)
+        </pre>
+        <div class="boot-bar"><span></span></div>
+        <div class="boot-madeby" id="boot-madeby">MADE BY AAYAN PARMAR AKA KARASUBERRY</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Updates Bar -->
+  <div class="updates-bar">
+    <p id="updates-text">🚀 Welcome to Aayan Parmar's Portfolio | Developer • Designer • Streamer • Editor</p>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="brand">
+      <img src="images/logo.jpg" class="logo" />
+      <span>KarasuBerry</span>
+    </div>
+    <div class="links">
+      <a href="#home">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="contact.html">Contact</a>
+      <button id="theme-toggle" aria-label="Toggle theme">☀️</button>
+    </div>
+    <button id="hamburger" aria-label="Open menu">☰</button>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero container">
+    <div class="hero-3d">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="hero-overlay">
+        <h1>Hi, I'm Aayan <span>(KarasuBerry)</span></h1>
+        <p>Developer • Editor • Designer • Gamer • Streamer</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="container fade">
+    <h2 class="title">About Me</h2>
+    <p>
+      I’m <strong>Aayan</strong>, also known as <span class="highlight">KarasuBerry</span> — a passionate developer,
+      designer, and editor. I love combining creativity and logic to craft modern experiences.
+    </p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="container fade">
+    <h2 class="title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill"><span>Web Development</span><div class="bar" data-width="80"></div></div>
+      <div class="skill"><span>App Development</span><div class="bar" data-width="60"></div></div>
+      <div class="skill"><span>Video Editing</span><div class="bar" data-width="70"></div></div>
+      <div class="skill"><span>Linux & GitHub</span><div class="bar" data-width="75"></div></div>
+      <div class="skill"><span>PHP & MySQL</span><div class="bar" data-width="20"></div></div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="container fade">
+    <h2 class="title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project" data-link="https://github.com/AustinKarasu/zyrowebsite">
+        <img src="images/project1.png" alt="College Website" />
+        <div class="overlay">View on GitHub</div>
+        <p>Modern personal college website to sumbit assignments.</p>
+      </div>
+      <div class="project" data-link="https://github.com/AustinKarasu/Zyrolauncher">
+        <img src="images/project2.png" alt="Zyro Launcher" />
+        <div class="overlay">View on GitHub</div>
+        <p>A launcher app made for fun.</p>
+      </div>
+      <div class="project" data-link="https://github.com/AustinKarasu">
+        <img src="images/project3.png" alt="Plugins Project" />
+        <div class="overlay">View on GitHub</div>
+        <p>Plugins made in php for minecraft servers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Moments & Certificates -->
+  <section id="moments" class="container fade">
+    <h2 class="title">Moments & Certificates</h2>
+    <div class="masonry-grid">
+      <img src="images/img1.jpg" alt="WebPage Project">
+      <img src="images/img2.jpg" alt="Skill Competition">
+      <img src="images/img3.jpg" alt="Group Photo">
+    </div>
+  </section>
+
+  <!-- Quick Links -->
+  <section id="nav-links" class="container fade">
+    <h2 class="title">Quick Links</h2>
+    <div class="link-cards">
+      <div class="link-card" onclick="window.location.href='explore.html'">
+        <h3>Explore</h3>
+        <p>Dive into more projects, experiments, and creations.</p>
+      </div>
+      <div class="link-card" onclick="window.location.href='contact.html'">
+        <h3>Contact</h3>
+        <p>Reach out via social platforms or send a message directly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© <span id="year"></span> Aayan Parmar • KarasuBerry</p>
+  </footer>
+</body>
+</html>
