@@ -792,8 +792,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
 
 /* ── BOOT ── */
 var boot=document.getElementById('boot');
-var rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-setTimeout(function(){boot.classList.add('out')},rm?80:3500);
+setTimeout(function(){boot.classList.add('out')},3500);
 
 /* ── CURSOR ── */
 if(window.matchMedia('(pointer:fine)').matches){
@@ -1137,12 +1136,12 @@ document.addEventListener('click',function(e){
 
 // init greeting message (streamed)
 setTimeout(function(){
-  var bubble=addMsg('bot','').querySelector ? msgsEl.lastElementChild : null;
-  var allBubbles=msgsEl.querySelectorAll('.msg.bot .msg-bubble');
-  var b=allBubbles[allBubbles.length-1];
-  var greeting="Hey! I'm KARASU-AI — Aayan's personal assistant ⚡ Ask me anything th-1];
+
   var greeting="Hey! I'm KARASU-AI — Aayan's personal assistant ⚡ Ask me anything about his skills, projects, or how to get in touch. What do you wanna know? 🔥";
-  streamText(b,greeting);
+
+  var bubble=addMsg('bot','');
+  streamText(bubble,greeting);
+
 },100);
 
 })();
@@ -1237,3 +1236,4 @@ setTimeout(function(){
 </script>
 </body>
 </html>
+
