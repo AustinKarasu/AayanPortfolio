@@ -1045,239 +1045,28 @@ function streamText(bubble,text,cb){
 // call Claude API
 async function sendToAI(message){
 
-const q = message.toLowerCase().trim()
+const q = message.toLowerCase()
 
-let reply = "I'm KARASU-AI ⚡ Ask me about Aayan Parmar's projects, skills, edits, tech stack, hobbies, philosophy, or how to contact him."
+let reply = "I'm KARASU-AI ⚡ Ask me about Aayan's projects, skills, edits, or how to contact him."
 
-/* ───────── INTRO / ABOUT ───────── */
-
-if(
-q.includes("who is aayan") ||
-q.includes("who is karasu") ||
-q.includes("who are you") ||
-q.includes("tell me about aayan") ||
-q.includes("about aayan") ||
-q.includes("karasuberry")
-){
-reply = "Aayan Parmar, also known online as Karasu or KarasuBerry, is a developer, editor, and designer from Himachal Pradesh, India. He studies Computer Engineering at Govt. Polytechnic Kangra and loves building creative digital experiences, coding projects, and cinematic anime edits. ⚡"
+if(q.includes("project")){
+reply = "Aayan has built several projects including a College Assignment Portal, Zyro Launcher, and Minecraft server plugins."
 }
 
-/* ───────── LOCATION ───────── */
-
-else if(
-q.includes("where is aayan") ||
-q.includes("where are you from") ||
-q.includes("location") ||
-q.includes("where does he live")
-){
-reply = "Aayan is from Himachal Pradesh, India — a beautiful mountain region in the north of the country."
+else if(q.includes("skill")){
+reply = "Aayan's skills include Web Development (HTML, CSS, JavaScript), Linux, GitHub, Video Editing, App Development, and he is learning Cybersecurity."
 }
 
-/* ───────── EDUCATION ───────── */
-
-else if(
-q.includes("study") ||
-q.includes("college") ||
-q.includes("education") ||
-q.includes("degree") ||
-q.includes("polytechnic")
-){
-reply = "Aayan studies Computer Engineering at Government Polytechnic Kangra in Himachal Pradesh."
+else if(q.includes("contact") || q.includes("reach")){
+reply = "You can contact Aayan via Discord (discord.gg/kmVE6dnX5H), Instagram @AayanKarasu, or email aayan@karasuberry.fun."
 }
 
-/* ───────── SKILLS ───────── */
-
-else if(
-q.includes("skill") ||
-q.includes("stack") ||
-q.includes("tech stack") ||
-q.includes("technologies") ||
-q.includes("what can he do")
-){
-reply =
-"Aayan's skills include:\n\n"+
-"• Web Development (HTML, CSS, JavaScript)\n"+
-"• Linux & GitHub\n"+
-"• Video Editing\n"+
-"• App Development\n"+
-"• PHP & MySQL\n"+
-"• Cybersecurity & Ethical Hacking (learning)\n\n"+
-"He enjoys mixing technical skills with creative design."
+else if(q.includes("youtube") || q.includes("video") || q.includes("edit")){
+reply = "Aayan posts cinematic anime edits on YouTube under the name KarasuBerry."
 }
 
-/* ───────── PROGRAMMING ───────── */
-
-else if(
-q.includes("programming") ||
-q.includes("language") ||
-q.includes("coding")
-){
-reply =
-"Aayan mainly works with:\n\n"+
-"• HTML / CSS / JavaScript\n"+
-"• PHP\n"+
-"• MySQL\n"+
-"• Linux tools\n\n"+
-"He also experiments with new technologies and development tools."
-}
-
-/* ───────── PROJECTS ───────── */
-
-else if(
-q.includes("project") ||
-q.includes("build") ||
-q.includes("portfolio") ||
-q.includes("work")
-){
-reply =
-"Aayan has built several projects including:\n\n"+
-"• College Assignment Portal — a web system for assignment submissions\n"+
-"• Zyro Launcher — a custom lightweight application launcher\n"+
-"• Minecraft Server Plugins — written in PHP\n\n"+
-"You can explore more on his GitHub."
-}
-
-/* ───────── GITHUB ───────── */
-
-else if(
-q.includes("github") ||
-q.includes("source code") ||
-q.includes("repo")
-){
-reply = "You can explore Aayan's projects and source code on GitHub: https://github.com/AustinKarasu"
-}
-
-/* ───────── YOUTUBE / EDITING ───────── */
-
-else if(
-q.includes("youtube") ||
-q.includes("edit") ||
-q.includes("video") ||
-q.includes("anime edit")
-){
-reply =
-"Aayan runs a YouTube channel called KarasuBerry where he posts cinematic anime edits. His edits often feature Demon Slayer, Solo Leveling, and other anime scenes."
-}
-
-/* ───────── ANIME ───────── */
-
-else if(
-q.includes("anime") ||
-q.includes("favorite anime") ||
-q.includes("demon slayer")
-){
-reply =
-"Aayan enjoys anime, especially Demon Slayer. Anime inspires many of his cinematic edits on YouTube."
-}
-
-/* ───────── CYBERSECURITY ───────── */
-
-else if(
-q.includes("cyber") ||
-q.includes("security") ||
-q.includes("hacking") ||
-q.includes("ethical hacking")
-){
-reply =
-"Aayan is actively learning cybersecurity and ethical hacking. He has completed Google Cybersecurity training and participated in hacking workshops."
-}
-
-/* ───────── CERTIFICATES ───────── */
-
-else if(
-q.includes("certificate") ||
-q.includes("course") ||
-q.includes("training")
-){
-reply =
-"Aayan has completed:\n\n"+
-"• Google Cybersecurity Course\n"+
-"• Ethical Hacking Training\n"+
-"• Various skill competitions in IT."
-}
-
-/* ───────── FITNESS ───────── */
-
-else if(
-q.includes("gym") ||
-q.includes("fitness") ||
-q.includes("workout") ||
-q.includes("calisthenics")
-){
-reply =
-"Aayan practices calisthenics and gymnastics. Physical discipline and continuous improvement are an important part of his lifestyle."
-}
-
-/* ───────── GAMING ───────── */
-
-else if(
-q.includes("game") ||
-q.includes("gaming") ||
-q.includes("minecraft")
-){
-reply =
-"Aayan enjoys gaming and experimenting with game development. He has built custom Minecraft server plugins using PHP."
-}
-
-/* ───────── PERSONALITY ───────── */
-
-else if(
-q.includes("mindset") ||
-q.includes("philosophy") ||
-q.includes("motivation") ||
-q.includes("goal")
-){
-reply =
-"Aayan's mindset focuses on constant improvement. He enjoys learning new skills, building projects, and pushing himself to become better every day."
-}
-
-/* ───────── CONTACT ───────── */
-
-else if(
-q.includes("contact") ||
-q.includes("reach") ||
-q.includes("hire") ||
-q.includes("message")
-){
-reply =
-"You can contact Aayan here:\n\n"+
-"Discord: discord.gg/kmVE6dnX5H\n"+
-"Instagram: @AayanKarasu\n"+
-"YouTube: @KarasuBerry\n"+
-"Email: aayan@karasuberry.fun"
-}
-
-/* ───────── GREETINGS ───────── */
-
-else if(
-q.includes("hello") ||
-q.includes("hi") ||
-q.includes("hey")
-){
-reply = "Hey! I'm KARASU-AI ⚡ Ask me anything about Aayan Parmar, his projects, skills, or edits."
-}
-
-/* ───────── THANKS ───────── */
-
-else if(
-q.includes("thanks") ||
-q.includes("thank you")
-){
-reply = "You're welcome ⚡ Happy to help!"
-}
-
-/* ───────── DEFAULT FALLBACK ───────── */
-
-else{
-reply =
-"I'm KARASU-AI ⚡ I can help you learn about:\n\n"+
-"• Aayan's projects\n"+
-"• skills & tech stack\n"+
-"• YouTube edits\n"+
-"• GitHub projects\n"+
-"• cybersecurity learning\n"+
-"• fitness & hobbies\n"+
-"• contact information"
+else if(q.includes("who") || q.includes("aayan")){
+reply = "Aayan Parmar (KarasuBerry) is a developer, editor, and designer from Himachal Pradesh studying Computer Engineering."
 }
 
 return {reply}
@@ -1347,6 +1136,7 @@ setTimeout(function(){
 </script>
 </body>
 </html>
+
 
 
 
