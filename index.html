@@ -864,7 +864,7 @@ document.querySelectorAll('[data-url]').forEach(function(el){
 });
 
 /* ── 3D TILT ── */
-if(window.matchMedia('(pointer:fine)').matches&&!rm){
+if(window.matchMedia('(pointer:fine)').matches){
   var card=document.getElementById('card3d'),wrap=card&&card.parentElement,tiltRaf=null;
   if(wrap){
     wrap.addEventListener('mousemove',function(e){
@@ -885,7 +885,7 @@ if(window.matchMedia('(pointer:fine)').matches&&!rm){
 }
 
 /* ── ORB PARALLAX ── */
-if(window.matchMedia('(pointer:fine)').matches&&!rm){
+if(window.matchMedia('(pointer:fine)').matches){
   var orb=document.getElementById('heroOrb'),orbRaf=null;
   if(orb){
     document.addEventListener('mousemove',function(e){
@@ -1170,6 +1170,7 @@ setTimeout(function(){
 </script>
 </body>
 </html>
+
 
 
 
