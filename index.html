@@ -1044,38 +1044,44 @@ function streamText(bubble,text,cb){
 
 // call Claude API
 async function sendToAI(userMsg){
-  if(isBotTyping)return;
-  isBotTyping=true;
-  sendBtn.disabled=true;
 
-  // add to history
-  history.push({role:'user',content:userMsg});
+if(isBotTyping)return;
+isBotTyping=true;
 
-  addMsg('user',userMsg);
-  qrEl.style.display='none';
-  showTyping();
+addMsg('user',userMsg)
+showTyping()
 
-  try{
-    var resp=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:400,
-        system:SYSTEM_PROMPT,
-        messages:history
-      })
-    });
+try{
 
-    hideTyping();
+const res = await fetch(
+"https://aayankarasu.itsaayanuchiha.workers.dev",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+message:userMsg
+})
+}
+)
 
-    if(!resp.ok){
-      var err=await resp.json().catch(function(){return{}});
-      throw new Error(err.error&&err.error.message?err.error.message:'API error '+resp.status);
-    }
+const data = await res.json()
 
-    var data=await resp.json();
-    var aiText=(data.content&&data.content[0]&&data.content[0].text)||'Sorry, I had trouble responding. Try asking again! 🔄';
+hideTyping()
+
+const bubble = addMsg('bot','')
+streamText(bubble,data.reply)
+
+}catch(err){
+
+hideTyping()
+addMsg('bot',"⚠️ AI connection failed")
+
+}
+
+isBotTyping=false
+}
 
     // add assistant response to history
     history.push({role:'assistant',content:aiText});
@@ -1164,6 +1170,7 @@ setTimeout(function(){
 </script>
 </body>
 </html>
+
 
 
 
