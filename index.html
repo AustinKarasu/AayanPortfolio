@@ -1083,29 +1083,6 @@ addMsg('bot',"⚠️ AI connection failed")
 isBotTyping=false
 }
 
-    // add assistant response to history
-    history.push({role:'assistant',content:aiText});
-
-    // stream the response
-    var bubble=addMsg('bot','').querySelector('.msg-bubble')||msgsEl.lastElementChild.querySelector('.msg-bubble');
-    // find the just-added bubble
-    var allMsgs=msgsEl.querySelectorAll('.msg.bot .msg-bubble');
-    var lastBubble=allMsgs[allMsgs.length-1];
-    streamText(lastBubble,aiText,function(){
-      isBotTyping=false;
-      sendBtn.disabled=false;
-      inpEl.focus();
-    });
-
-  } catch(e){
-    hideTyping();
-    addMsg('bot','Hmm, seems my circuits glitched 😅 Try again in a sec, or reach out to Aayan directly on Discord!');
-    history.pop(); // remove failed user message from history
-    isBotTyping=false;
-    sendBtn.disabled=false;
-  }
-}
-
 // FAB toggle
 fab.addEventListener('click',function(){
   var open=chatWin.classList.toggle('open');
@@ -1170,6 +1147,7 @@ setTimeout(function(){
 </script>
 </body>
 </html>
+
 
 
 
