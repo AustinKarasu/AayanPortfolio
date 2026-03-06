@@ -1043,44 +1043,92 @@ function streamText(bubble,text,cb){
 }
 
 // call Claude API
-async function sendToAI(userMsg){
+async function sendToAI(message){
 
-if(isBotTyping)return;
-isBotTyping=true;
+const q = message.toLowerCase()
 
-addMsg('user',userMsg)
-showTyping()
+let reply = "I'm KARASU-AI ⚡ Ask me about Aayan's projects, skills, edits, or how to contact him."
 
-try{
+/* ───────── ABOUT AAYAN ───────── */
 
-const res = await fetch(
-"https://aayankarasu.itsaayanuchiha.workers.dev",
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-message:userMsg
-})
-}
-)
-
-const data = await res.json()
-
-hideTyping()
-
-const bubble = addMsg('bot','')
-streamText(bubble,data.reply)
-
-}catch(err){
-
-hideTyping()
-addMsg('bot',"⚠️ AI connection failed")
-
+if(q.includes("who") || q.includes("aayan") || q.includes("karasu")){
+reply = "Aayan Parmar, also known online as Karasu or KarasuBerry, is a developer, video editor, and designer from Himachal Pradesh, India. He studies Computer Engineering at Govt. Polytechnic Kangra and loves building cool digital experiences, anime edits, and creative tech projects. ⚡"
 }
 
-isBotTyping=false
+/* ───────── PROJECTS ───────── */
+
+else if(q.includes("project") || q.includes("build") || q.includes("made")){
+reply = "Aayan has built several projects including:\n\n• College Assignment Portal — a modern web system for submitting assignments\n• Zyro Launcher — a lightweight custom app launcher\n• Minecraft PHP Plugins — server-side game plugins\n\nYou can explore more on his GitHub: github.com/AustinKarasu 💻"
+}
+
+/* ───────── SKILLS ───────── */
+
+else if(q.includes("skill") || q.includes("tech") || q.includes("stack")){
+reply = "Aayan's main skills include:\n\n• Web Development (HTML, CSS, JavaScript)\n• Linux & GitHub\n• Video Editing\n• App Development\n• PHP & MySQL\n\nHe is also learning Cybersecurity and Ethical Hacking. ⚡"
+}
+
+/* ───────── EDUCATION ───────── */
+
+else if(q.includes("study") || q.includes("college") || q.includes("education")){
+reply = "Aayan studies Computer Engineering at Government Polytechnic Kangra in Himachal Pradesh, India."
+}
+
+/* ───────── VIDEOS / YOUTUBE ───────── */
+
+else if(q.includes("youtube") || q.includes("video") || q.includes("edit")){
+reply = "Aayan creates cinematic anime edits on YouTube under the name KarasuBerry. His edits often feature Demon Slayer, Solo Leveling, and Wuthering Waves. 🎬"
+}
+
+/* ───────── CERTIFICATIONS ───────── */
+
+else if(q.includes("certificate") || q.includes("course") || q.includes("training")){
+reply = "Aayan has completed Google Cybersecurity training and participated in ethical hacking training programs. He is continuously improving his security and development skills."
+}
+
+/* ───────── CONTACT ───────── */
+
+else if(q.includes("contact") || q.includes("reach") || q.includes("hire")){
+reply = "You can contact Aayan through:\n\nDiscord: discord.gg/kmVE6dnX5H (most active)\nInstagram: @AayanKarasu\nEmail: aayan@karasuberry.fun\nYouTube: @KarasuBerry"
+}
+
+/* ───────── GITHUB ───────── */
+
+else if(q.includes("github") || q.includes("code")){
+reply = "You can explore Aayan's code and projects on GitHub: github.com/AustinKarasu"
+}
+
+/* ───────── GAMING ───────── */
+
+else if(q.includes("game") || q.includes("gaming")){
+reply = "Aayan enjoys gaming and experimenting with game development. He has created Minecraft server plugins and often mixes gaming with coding experiments."
+}
+
+/* ───────── FITNESS ───────── */
+
+else if(q.includes("gym") || q.includes("fitness") || q.includes("calisthenics")){
+reply = "Aayan practices calisthenics and gymnastics. Physical discipline and constant improvement are part of his lifestyle."
+}
+
+/* ───────── PHILOSOPHY ───────── */
+
+else if(q.includes("philosophy") || q.includes("belief") || q.includes("mindset")){
+reply = "Aayan believes in grinding hard and improving every day. His mindset is focused on learning fast, building cool things, and becoming the best version of himself."
+}
+
+/* ───────── LOCATION ───────── */
+
+else if(q.includes("where") || q.includes("location")){
+reply = "Aayan is from Himachal Pradesh, India."
+}
+
+/* ───────── DEFAULT RESPONSE ───────── */
+
+else{
+reply = "I’m KARASU-AI ⚡ I can tell you about Aayan's projects, skills, videos, education, or how to contact him."
+}
+
+return {reply}
+
 }
 
 // FAB toggle
@@ -1147,6 +1195,7 @@ setTimeout(function(){
 </script>
 </body>
 </html>
+
 
 
 
