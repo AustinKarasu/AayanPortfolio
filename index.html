@@ -181,7 +181,17 @@ nav.scrolled{background:rgba(8,0,6,.9);backdrop-filter:blur(24px) saturate(1.4);
 @keyframes cardFloat{0%,100%{transform:rotateY(-5deg) rotateX(3deg)}50%{transform:rotateY(5deg) rotateX(-3deg) translateZ(16px)}}
 .card-face{position:absolute;inset:0;background:linear-gradient(160deg,var(--card) 0%,rgba(30,0,16,.9) 100%);border:1px solid var(--border-hot);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:28px 22px;box-shadow:0 24px 70px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.04)}
 .card-face.has-bg{background:none}
-.card-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.35;border-radius:3px}
+.card-bg-img{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center;
+opacity:.35;
+filter:saturate(.9) contrast(1.05);
+}
 .card-face-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(22,0,12,.75) 0%,rgba(8,0,6,.88) 100%);z-index:0}
 .c-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--red) 0%,var(--bg2) 100%);border:2px solid rgba(200,20,40,.5);display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:2rem;color:var(--white);box-shadow:0 0 35px rgba(200,20,40,.35);position:relative;z-index:1;overflow:hidden}
 .c-avatar-img{width:100%;height:100%;object-fit:cover;border-radius:50%}
@@ -983,15 +993,21 @@ PERSONALITY OF RESPONSE:
 function addMsg(role,text){
   var msg=document.createElement('div');
   msg.className='msg '+role;
+
   var av=document.createElement('div');
   av.className='msg-avatar';
   av.textContent=role==='bot'?'K':'U';
+
   var bubble=document.createElement('div');
   bubble.className='msg-bubble';
   bubble.textContent=text;
-  msg.appendChild(av);msg.appendChild(bubble);
+
+  msg.appendChild(av);
+  msg.appendChild(bubble);
   msgsEl.appendChild(msg);
+
   msgsEl.scrollTop=msgsEl.scrollHeight;
+
   return bubble;
 }
 
@@ -1236,4 +1252,5 @@ setTimeout(function(){
 </script>
 </body>
 </html>
+
 
