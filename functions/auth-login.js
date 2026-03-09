@@ -1,21 +1,33 @@
-export async function onRequestPost({ request, env }) {
+/* ===============================
+   KarasuBerry Auto Login Guard
+================================ */
 
- const { username, password } = await request.json()
+function getToken() {
+  return localStorage.getItem("kb_token");
+}
 
- const user = await env.DB.prepare(
-  "SELECT * FROM users WHERE username=?"
- ).bind(username).first()
+function requireLogin() {
 
- if(!user){
-  return new Response("User not found",{status:401})
- }
+  const token = getToken();
 
- if(user.password_hash !== password){
-  return new Response("Wrong password",{status:401})
- }
-
- return Response.json({
-  token:"logged-in"
- })
+  if (!token) {
+    window.location.href = "/auth.html";
+    return;
+  }
 
 }
+
+function redirectIfLoggedIn() {
+
+  const token = getToken();
+
+  if (token) {
+    window.location.href = "/admin.html";
+  }
+
+}
+
+/* expose */
+
+window.requireLogin = requireLogin;
+window.redirectIfLoggedIn = redirectIfLoggedIn;
