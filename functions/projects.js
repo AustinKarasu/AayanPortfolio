@@ -1,10 +1,9 @@
-export async function onRequest() {
+export async function onRequest({ env }) {
 
- const res = await fetch("https://karasuberry.fun/content.json")
- const data = await res.json()
+ const result = await env.DB.prepare(
+  "SELECT * FROM projects ORDER BY id DESC"
+ ).all()
 
- return new Response(JSON.stringify(data.projects), {
-   headers: { "Content-Type": "application/json" }
- })
+ return Response.json(result.results)
 
 }
