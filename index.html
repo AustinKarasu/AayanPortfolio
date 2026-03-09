@@ -976,8 +976,71 @@ setTimeout(function(){
 
 })();
 </script>
+  <!-- CHAT FLOAT BUTTON -->
+<button id="chat-fab" aria-label="Open chat"
+style="
+position:fixed;
+bottom:28px;
+right:28px;
+width:60px;
+height:60px;
+border-radius:50%;
+background:#c8141e;
+border:none;
+color:white;
+font-size:20px;
+z-index:800;
+box-shadow:0 0 30px rgba(200,20,40,.5);
+">
+💬
+</button>
+
+<!-- CHAT WINDOW -->
+<div id="chat-win">
+
+<div class="chat-head">
+  <div class="chat-head-avatar">
+    K
+    <div class="chat-head-status"></div>
+  </div>
+
+  <div class="chat-head-info">
+    <div class="chat-head-name">Karasu AI</div>
+    <div class="chat-head-sub">Assistant</div>
+  </div>
+
+  <div class="chat-head-badge">ONLINE</div>
+</div>
+
+<div class="chat-msgs" id="chat-msgs"></div>
+
+<div class="quick-replies">
+  <button class="qr" data-q="projects">Projects</button>
+  <button class="qr" data-q="skills">Skills</button>
+  <button class="qr" data-q="contact">Contact</button>
+</div>
+
+<div class="chat-input-area">
+
+<textarea id="chat-inp" placeholder="Ask something..."></textarea>
+
+<button id="chat-send">
+<svg viewBox="0 0 24 24">
+<line x1="22" y1="2" x2="11" y2="13"/>
+<polygon points="22 2 15 22 11 13 2 9 22 2"/>
+</svg>
+</button>
+
+</div>
+
+<div class="chat-footer">
+Powered by <span>KARASU-AI</span>
+</div>
+
+</div>
 </body>
 </html>
+
 
 
 
