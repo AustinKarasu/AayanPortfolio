@@ -2,7 +2,15 @@ export async function onRequestPost({ request, env }) {
 
  const { phone } = await request.json()
 
- const otp = Math.floor(100000 + Math.random() * 900000)
+ if(!phone){
+  return new Response("Phone required",{status:400})
+ }
+
+ const otp = Math.floor(100000 + Math.random()*900000)
+
+ await env.DB.prepare(
+  "INSERT OR REPLACE INTO otp_codes(phone,code) VALUES(?,?)"
+ ).bind(phone,otp).run()
 
  await fetch(
   `https://api.twilio.com/2010-04-01/Accounts/${env.TWILIO_SID}/Messages.json`,
@@ -13,16 +21,13 @@ export async function onRequestPost({ request, env }) {
     "Content-Type":"application/x-www-form-urlencoded"
    },
    body:new URLSearchParams({
-    To: phone,
-    From: env.TWILIO_PHONE,
-    Body:`Your verification code: ${otp}`
+    To:phone,
+    From:env.TWILIO_PHONE,
+    Body:`Your KarasuBerry verification code: ${otp}`
    })
   }
  )
 
- return Response.json({
-  success:true,
-  otp
- })
+ return Response.json({success:true})
 
 }
