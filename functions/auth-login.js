@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs"
 import { sign } from "hono/jwt"
 
-export async function onRequestPost({ request, env }) {
+ async function onRequestPost({ request, env }) {
 
  const { username,password } = await request.json()
 
