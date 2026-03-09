@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KarasuBerry Auth</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+background:#080006;
+font-family:Outfit,system-ui;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+}
+
+.card{
+width:420px;
+background:#120008;
+border:1px solid rgba(255,255,255,.08);
+padding:40px;
+border-radius:8px;
+box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+font-size:30px;
+}
+
+.tabs{
+display:flex;
+margin-bottom:20px;
+border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.tabs button{
+flex:1;
+padding:12px;
+background:none;
+border:none;
+color:#aaa;
+font-weight:500;
+cursor:pointer;
+}
+
+.tabs button.active{
+color:#fff;
+border-bottom:2px solid #c8141e;
+}
+
+form{
+display:none;
+}
+
+form.active{
+display:block;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+background:#1a000c;
+border:1px solid rgba(255,255,255,.1);
+border-radius:6px;
+color:white;
+}
+
+button.submit{
+width:100%;
+padding:12px;
+background:#c8141e;
+border:none;
+border-radius:6px;
+color:white;
+font-weight:600;
+cursor:pointer;
+}
+
+button.submit:hover{
+background:#e8303a;
+}
+
+.msg{
+text-align:center;
+margin-top:10px;
+font-size:14px;
+color:#ff6b6b;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>KarasuBerry</h1>
+
+<div class="tabs">
+<button id="loginTab" class="active">Login</button>
+<button id="registerTab">Register</button>
+</div>
+
+<!-- LOGIN -->
+
+<form id="loginForm" class="active">
+
+<input id="loginUser" placeholder="Username">
+
+<input id="loginPass" type="password" placeholder="Password">
+
+<button class="submit" type="submit">Login</button>
+
+</form>
+
+<!-- REGISTER -->
+
+<form id="registerForm">
+
+<input id="regUser" placeholder="Username">
+
+<input id="regPhone" placeholder="Phone (+countrycode)">
+
+<input id="regPass" type="password" placeholder="Password">
+
+<input id="regPass2" type="password" placeholder="Confirm password">
+
+<button class="submit" type="submit">Create Account</button>
+
+</form>
+
+<div class="msg" id="msg"></div>
+
+</div>
+
+<script>
+
+const loginTab=document.getElementById("loginTab")
+const registerTab=document.getElementById("registerTab")
+
+const loginForm=document.getElementById("loginForm")
+const registerForm=document.getElementById("registerForm")
+
+loginTab.onclick=()=>{
+loginTab.classList.add("active")
+registerTab.classList.remove("active")
+loginForm.classList.add("active")
+registerForm.classList.remove("active")
+}
+
+registerTab.onclick=()=>{
+registerTab.classList.add("active")
+loginTab.classList.remove("active")
+registerForm.classList.add("active")
+loginForm.classList.remove("active")
+}
+
+const msg=document.getElementById("msg")
+
+/* LOGIN */
+
+loginForm.onsubmit=async e=>{
+e.preventDefault()
+
+const username=document.getElementById("loginUser").value
+const password=document.getElementById("loginPass").value
+
+const res=await fetch("/api/auth-login",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({username,password})
+})
+
+if(res.status!==200){
+msg.textContent="Invalid login"
+return
+}
+
+const data=await res.json()
+
+localStorage.setItem("token",data.token)
+
+location.href="/admin.html"
+
+}
+
+/* REGISTER */
+
+registerForm.onsubmit=async e=>{
+e.preventDefault()
+
+const username=document.getElementById("regUser").value
+const phone=document.getElementById("regPhone").value
+const password=document.getElementById("regPass").value
+const password2=document.getElementById("regPass2").value
+
+if(password!==password2){
+msg.textContent="Passwords do not match"
+return
+}
+
+const res=await fetch("/api/auth-register",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({username,phone,password})
+})
+
+if(res.status!==200){
+msg.textContent="Registration failed"
+return
+}
+
+msg.style.color="#4ade80"
+msg.textContent="Account created. You can login now."
+
+loginTab.click()
+
+}
+
+</script>
+
+</body>
+</html>
