@@ -1,21 +1,21 @@
-export async function onRequestPost({ request, env }) {
+export async function onRequestGet({ env }) {
 
- const { user, message } = await request.json()
+ const { results } = await env.DB.prepare(
+  "SELECT * FROM chat_messages ORDER BY id DESC LIMIT 50"
+ ).all()
 
- await env.DB.prepare(
-  "INSERT INTO public_chat(user,message) VALUES(?,?)"
- ).bind(user, message).run()
-
- return Response.json({ success:true })
+ return Response.json(results)
 
 }
 
-export async function onRequestGet({ env }) {
+export async function onRequestPost({ request, env }) {
 
- const result = await env.DB.prepare(
-  "SELECT * FROM public_chat ORDER BY id DESC LIMIT 50"
- ).all()
+ const { user_id,message } = await request.json()
 
- return Response.json(result.results)
+ await env.DB.prepare(
+  "INSERT INTO chat_messages(user_id,message) VALUES(?,?)"
+ ).bind(user_id,message).run()
+
+ return Response.json({ success:true })
 
 }
