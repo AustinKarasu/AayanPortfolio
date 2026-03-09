@@ -1,21 +1,57 @@
-export async function onRequestPost({ request, env }) {
+console.log("auth.js loaded")
 
- const { username, password } = await request.json()
+const API = "/api"
 
- const user = await env.DB.prepare(
-  "SELECT * FROM users WHERE username=?"
- ).bind(username).first()
+/* LOGIN */
 
- if(!user){
-  return new Response("User not found",{status:401})
+async function loginUser(){
+
+ const username=document.getElementById("loginUser").value
+ const password=document.getElementById("loginPass").value
+
+ if(!username || !password){
+  alert("Enter username and password")
+  return
  }
 
- if(user.password_hash !== password){
-  return new Response("Wrong password",{status:401})
- }
+ console.log("Sending login request")
 
- return Response.json({
-  token: "logged-in"
+ const res = await fetch(`${API}/auth-login`,{
+  method:"POST",
+  headers:{
+   "Content-Type":"application/json"
+  },
+  body:JSON.stringify({
+   username,
+   password
+  })
  })
 
+ console.log("Response status:",res.status)
+
+ if(res.status!==200){
+  alert("Invalid login")
+  return
+ }
+
+ const data = await res.json()
+
+ localStorage.setItem("token",data.token)
+
+ alert("Login success")
+
+ location.href="/admin.html"
+
 }
+
+/* WAIT UNTIL PAGE LOADS */
+
+window.addEventListener("DOMContentLoaded",()=>{
+
+ const loginBtn=document.getElementById("loginBtn")
+
+ if(loginBtn){
+  loginBtn.addEventListener("click",loginUser)
+ }
+
+})
