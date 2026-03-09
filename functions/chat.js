@@ -1,19 +1,21 @@
-let messages = []
+export async function onRequestPost({ request, env }) {
 
-export async function onRequestPost({ request }) {
+ const { user, message } = await request.json()
 
- const body = await request.json()
+ await env.DB.prepare(
+  "INSERT INTO public_chat(user,message) VALUES(?,?)"
+ ).bind(user, message).run()
 
- messages.push({
-   text: body.message,
-   time: Date.now()
- })
+ return Response.json({ success:true })
 
- return new Response(JSON.stringify({ ok: true }))
 }
 
-export async function onRequestGet() {
+export async function onRequestGet({ env }) {
 
- return new Response(JSON.stringify(messages))
+ const result = await env.DB.prepare(
+  "SELECT * FROM public_chat ORDER BY id DESC LIMIT 50"
+ ).all()
+
+ return Response.json(result.results)
 
 }
