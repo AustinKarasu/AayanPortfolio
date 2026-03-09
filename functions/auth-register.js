@@ -1,24 +1,15 @@
+import bcrypt from "bcryptjs"
+
 export async function onRequestPost({ request, env }) {
 
- const { phone } = await request.json()
+ const { username, phone, password } = await request.json()
 
- const otp = Math.floor(100000 + Math.random()*900000)
+ const hash = await bcrypt.hash(password,10)
 
- await fetch(
- `https://api.twilio.com/2010-04-01/Accounts/${env.TWILIO_SID}/Messages.json`,
- {
-  method:"POST",
-  headers:{
-   Authorization:"Basic "+btoa(`${env.TWILIO_SID}:${env.TWILIO_TOKEN}`),
-   "Content-Type":"application/x-www-form-urlencoded"
-  },
-  body:new URLSearchParams({
-   To:phone,
-   From:env.TWILIO_PHONE,
-   Body:`Your verification code: ${otp}`
-  })
- })
+ await env.DB.prepare(
+ "INSERT INTO users (username,phone,password_hash) VALUES (?,?,?)"
+ ).bind(username,phone,hash).run()
 
- return Response.json({ success:true })
+ return Response.json({success:true})
 
 }
