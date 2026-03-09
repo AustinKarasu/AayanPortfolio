@@ -1,9 +1,9 @@
 export async function onRequest({ env }) {
 
- const result = await env.DB.prepare(
+ const { results } = await env.DB.prepare(
   "SELECT * FROM projects ORDER BY id DESC"
  ).all()
 
- return Response.json(result.results)
+ return Response.json(results)
 
 }
