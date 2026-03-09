@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "title": "College Assignment Portal",
+      "tag": "Web Development",
+      "description": "Modern assignment submission portal.",
+      "image": "images/project1.png",
+      "url": "https://github.com/AustinKarasu/zyrowebsite"
+    }
+  ],
+
+  "videos": [
+    {
+      "title": "Sanemi Edit 🔥",
+      "date": "03 · 05 · 2026",
+      "tag": "#DemonSlayer",
+      "thumbnail": "https://img.youtube.com/vi/a8lnvzeRmGM/maxresdefault.jpg",
+      "url": "https://www.youtube.com/shorts/a8lnvzeRmGM"
+    }
+  ],
+
+  "gallery": [
+    {
+      "title": "Hacking Training",
+      "image": "images/img1.jpeg"
+    }
+  ]
+}
