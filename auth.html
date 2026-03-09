@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KarasuBerry Auth</title>
+<title>KarasuBerry Authentication</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -34,6 +34,7 @@ h1{
 text-align:center;
 margin-bottom:25px;
 font-size:30px;
+letter-spacing:1px;
 }
 
 .tabs{
@@ -73,6 +74,7 @@ background:#1a000c;
 border:1px solid rgba(255,255,255,.1);
 border-radius:6px;
 color:white;
+font-size:14px;
 }
 
 button.submit{
@@ -84,10 +86,30 @@ border-radius:6px;
 color:white;
 font-weight:600;
 cursor:pointer;
+margin-top:5px;
 }
 
 button.submit:hover{
 background:#e8303a;
+}
+
+.otp-row{
+display:flex;
+gap:10px;
+}
+
+.otp-row input{
+flex:1;
+}
+
+.otp-row button{
+padding:10px;
+background:#c8141e;
+border:none;
+border-radius:6px;
+color:white;
+cursor:pointer;
+font-size:12px;
 }
 
 .msg{
@@ -120,7 +142,9 @@ color:#ff6b6b;
 
 <input id="loginPass" type="password" placeholder="Password">
 
-<button class="submit" type="submit">Login</button>
+<button type="button" class="submit" onclick="loginUser()">
+Login
+</button>
 
 </form>
 
@@ -132,19 +156,32 @@ color:#ff6b6b;
 
 <input id="regPhone" placeholder="Phone (+countrycode)">
 
+<div class="otp-row">
+<input id="otpCode" placeholder="OTP Code">
+<button type="button" id="sendOTPBtn" onclick="sendOTP()">
+Send OTP
+</button>
+</div>
+
 <input id="regPass" type="password" placeholder="Password">
 
 <input id="regPass2" type="password" placeholder="Confirm password">
 
-<button class="submit" type="submit">Create Account</button>
+<button type="button" class="submit" onclick="registerUser()">
+Create Account
+</button>
 
 </form>
 
-<div class="msg" id="msg"></div>
+<div id="msg" class="msg"></div>
 
 </div>
 
+<script src="js/auth.js"></script>
+
 <script>
+
+/* TAB SWITCH */
 
 const loginTab=document.getElementById("loginTab")
 const registerTab=document.getElementById("registerTab")
@@ -164,68 +201,6 @@ registerTab.classList.add("active")
 loginTab.classList.remove("active")
 registerForm.classList.add("active")
 loginForm.classList.remove("active")
-}
-
-const msg=document.getElementById("msg")
-
-/* LOGIN */
-
-loginForm.onsubmit=async e=>{
-e.preventDefault()
-
-const username=document.getElementById("loginUser").value
-const password=document.getElementById("loginPass").value
-
-const res=await fetch("/api/auth-login",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({username,password})
-})
-
-if(res.status!==200){
-msg.textContent="Invalid login"
-return
-}
-
-const data=await res.json()
-
-localStorage.setItem("token",data.token)
-
-location.href="/admin.html"
-
-}
-
-/* REGISTER */
-
-registerForm.onsubmit=async e=>{
-e.preventDefault()
-
-const username=document.getElementById("regUser").value
-const phone=document.getElementById("regPhone").value
-const password=document.getElementById("regPass").value
-const password2=document.getElementById("regPass2").value
-
-if(password!==password2){
-msg.textContent="Passwords do not match"
-return
-}
-
-const res=await fetch("/api/auth-register",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({username,phone,password})
-})
-
-if(res.status!==200){
-msg.textContent="Registration failed"
-return
-}
-
-msg.style.color="#4ade80"
-msg.textContent="Account created. You can login now."
-
-loginTab.click()
-
 }
 
 </script>
