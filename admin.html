@@ -349,11 +349,52 @@ localStorage.removeItem("token")
 location.href="/login.html"
 
 }
+async function loadChat(){
 
+const res = await fetch("/api/chat")
+const msgs = await res.json()
+
+const box = document.getElementById("chatMessages")
+
+box.innerHTML=""
+
+msgs.forEach(m=>{
+
+ box.innerHTML += `
+ <div class="msg">
+ <b>${m.user}</b>: ${m.message}
+ </div>
+ `
+
+})
+
+}
+
+setInterval(loadChat,2000)
+
+async function sendAdminMsg(){
+
+const text=document.getElementById("chatInput").value
+
+await fetch("/api/chat",{
+method:"POST",
+headers:{ "Content-Type":"application/json"},
+body:JSON.stringify({
+user:"ADMIN",
+message:text
+})
+})
+
+document.getElementById("chatInput").value=""
+
+loadChat()
+
+}
 </script>
 
 </body>
 </html>
+
 
 
 
