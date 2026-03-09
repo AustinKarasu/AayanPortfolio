@@ -1,4 +1,4 @@
-export async function getProjects(){
+ async function getProjects(){
 
  const res = await fetch("/api/projects")
  return res.json()
