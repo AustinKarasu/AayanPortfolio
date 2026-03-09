@@ -1,4 +1,4 @@
-export async function onRequest({ request, env }){
+ async function onRequest({ request, env }){
 
  const ua = request.headers.get("user-agent")
 
