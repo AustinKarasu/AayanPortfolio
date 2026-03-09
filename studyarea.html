@@ -1,1 +1,16 @@
+fetch("/api/study")
+.then(r=>r.json())
+.then(notes=>{
 
+ const container=document.getElementById("notes")
+
+ notes.forEach(n=>{
+  container.innerHTML+=`
+   <div>
+    <h3>${n.title}</h3>
+    <a href="${n.pdf}" download>Download</a>
+   </div>
+  `
+ })
+
+})
