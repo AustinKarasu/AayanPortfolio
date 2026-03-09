@@ -1,6 +1,6 @@
 console.log("auth.js loaded")
 
-const API = "/api"
+const API="/api"
 
 async function loginUser(){
 
@@ -12,15 +12,12 @@ async function loginUser(){
   return
  }
 
- const res = await fetch(`${API}/auth-login`,{
+ const res=await fetch(API+"/auth-login",{
   method:"POST",
   headers:{
    "Content-Type":"application/json"
   },
-  body:JSON.stringify({
-   username,
-   password
-  })
+  body:JSON.stringify({username,password})
  })
 
  if(res.status!==200){
@@ -28,19 +25,23 @@ async function loginUser(){
   return
  }
 
- const data = await res.json()
+ const data=await res.json()
 
  localStorage.setItem("token",data.token)
 
  location.href="/admin.html"
-
 }
 
 async function sendOTP(){
 
  const phone=document.getElementById("regPhone").value
 
- const res=await fetch(`${API}/send-otp`,{
+ if(!phone){
+  alert("Enter phone number")
+  return
+ }
+
+ const res=await fetch(API+"/send-otp",{
   method:"POST",
   headers:{
    "Content-Type":"application/json"
@@ -54,7 +55,6 @@ async function sendOTP(){
  }
 
  alert("OTP sent")
-
 }
 
 async function registerUser(){
@@ -63,26 +63,23 @@ async function registerUser(){
  const phone=document.getElementById("regPhone").value
  const password=document.getElementById("regPass").value
 
- const res=await fetch(`${API}/auth-register`,{
+ const res=await fetch(API+"/auth-register",{
   method:"POST",
   headers:{
    "Content-Type":"application/json"
   },
-  body:JSON.stringify({
-   username,
-   phone,
-   password
-  })
+  body:JSON.stringify({username,phone,password})
  })
 
  if(res.status!==200){
-  alert("Register failed")
+  alert("Registration failed")
   return
  }
 
  alert("Account created")
-
 }
+
+/* expose to HTML */
 
 window.loginUser = loginUser
 window.sendOTP = sendOTP
