@@ -1,1 +1,36 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily Updates - KarasuBerry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>/* Reuse main CSS for nav, container, sec-title; .updates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; } .update-card { background: var(--card); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--border); } .update-card h3 { color: var(--white); } .update-card p { color: var(--text); } @media (max-width: 768px) { .updates-grid { grid-template-columns: 1fr; } }</style>
+</head>
+<body>
+  <nav><!-- Paste main nav from index.html --></nav>
+  <div class="container">
+    <h1 class="sec-title">Daily Updates <em>News &amp; Events</em></h1>
+    <div class="updates-grid" id="updatesList"></div>
+  </div>
+  <script type="module">
+    import { apiCall } from './api.js';
+    async function loadUpdates() {
+      try {
+        const res = await apiCall('/updates');
+        const list = document.getElementById('updatesList');
+        list.innerHTML = res.map(u => `
+          <div class="update-card">
+            <h3>${u.title}</h3>
+            <p>${u.content}</p>
+            <small>${new Date(u.created_at).toLocaleDateString()}</small>
+          </div>
+        `).join('');
+      } catch (e) {
+        list.innerHTML = '<div class="update-card"><h3>Sample Update</h3><p>Check back soon!</p></div>';
+      }
+    }
+    loadUpdates();
+  </script>
+</body>
+</html>
