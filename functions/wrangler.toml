@@ -1,7 +1,0 @@
-name = "karasuberry"
-compatibility_date = "2026-03-09"
-
-[[d1_databases]]
-binding = "DB"
-database_name = "portfolio-db"
-database_id = "3d77ac64-e8aa-4059-ba0d-d835dbd197cb"
