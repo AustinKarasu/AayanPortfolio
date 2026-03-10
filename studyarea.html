@@ -1,16 +1,15 @@
-fetch("/api/study")
-.then(r=>r.json())
-.then(notes=>{
-
- const container=document.getElementById("notes")
-
- notes.forEach(n=>{
-  container.innerHTML+=`
-   <div>
-    <h3>${n.title}</h3>
-    <a href="${n.pdf}" download>Download</a>
-   </div>
-  `
- })
-
-})
+async function loadStudy() {
+  try {
+    const res = await fetch('/api/study');
+    const notes = await res.json();
+    const grid = document.querySelector('.notes-grid');
+    grid.innerHTML = notes.map(note => `
+      <div class="note-card">
+        <h3>${note.title}</h3>
+        <p>${note.description}</p>
+        ${note.pdf_url ? `<a href="${note.pdf_url}" download class="pdf-link">Download PDF</a>` : ''}
+      </div>
+    `).join('');
+  } catch (e) { console.log('Study API failed, using static'); }
+}
+loadStudy();
