@@ -1,13 +1,19 @@
- async function getProjects(){
+const API_BASE = '/api';
 
- const res = await fetch("/api/projects")
- return res.json()
-
+export async function apiCall(endpoint, options = {}) {
+  const token = localStorage.getItem('token');
+  const res = await fetch(`${API_BASE}${endpoint}`, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+      ...options.headers
+    }
+  });
+  if (!res.ok) {
+    throw new Error(await res.text());
+  }
+  return res.json();
 }
 
-export async function getUpdates(){
-
- const res = await fetch("/api/updates")
- return res.json()
-
-}
+// Usage: apiCall('/content/project').then(data => console.log(data));
