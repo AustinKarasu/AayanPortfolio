@@ -1,15 +1,163 @@
-async function loadStudy() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#0a0005"/>
+<title>StudyArea · KarasuBerry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#080006;--bg2:#0e000a;--surface:#120008;--card:#16000c;--border:rgba(255,255,255,0.07);--border-hot:rgba(200,20,40,0.35);--red:#c8141e;--red2:#e8303a;--gold:#c9a84c;--gold2:#e8c97a;--white:#f5eeea;--muted:#5a4a50;--text:#b8a8ad;--glow-r:0 0 40px rgba(200,20,40,0.4);--ff-display:'Bebas Neue',sans-serif;--ff-body:'Outfit',sans-serif;--ff-mono:'JetBrains Mono',monospace;--ease:cubic-bezier(.23,1,.32,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:clamp(14px,2.5vw,22px) 0;background:rgba(8,0,6,.9);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative;margin:0 clamp(1rem,5vw,2rem)}
+.nav-logo{font-family:var(--ff-display);font-size:clamp(1.2rem,2.5vw,1.65rem);letter-spacing:.06em;line-height:1;display:flex;flex-direction:column}
+.nav-logo-main{background:linear-gradient(90deg,#fff 20%,var(--red2) 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-logo-sub{font-family:var(--ff-mono);font-size:.4rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;-webkit-text-fill-color:var(--muted);margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:clamp(18px,3vw,38px);list-style:none}
+.nav-links a{font-family:var(--ff-mono);font-size:.63rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;position:relative;transition:color .3s;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--red2);transition:width .35s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{color:var(--bg)!important;background:var(--red)!important;padding:9px 22px!important;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:background .3s,box-shadow .3s,transform .2s!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--gold)!important;box-shadow:var(--glow-g)!important;color:#000!important;transform:translateY(-1px)}
+.nav-login{background:transparent!important;color:var(--gold)!important;border:1px solid rgba(201,168,76,.3);clip-path:none!important;padding:9px 22px!important;border-radius:4px;transition:all .3s}
+.nav-login:hover{border-color:var(--gold);box-shadow:var(--glow-g);color:var(--white)}
+#ham{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:6px}
+#ham span{display:block;width:22px;height:1.5px;background:var(--text);transition:transform .3s,opacity .3s,background .3s}
+#ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);background:var(--red2)}
+#ham.open span:nth-child(2){opacity:0}
+#ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);background:var(--red2)}
+@media(max-width:768px){
+  #ham{display:flex}
+  .nav-links{display:none;position:absolute;top:calc(100% + 1px);left:-4%;right:-4%;flex-direction:column;gap:0;background:rgba(8,0,6,.97);border-bottom:1px solid var(--border);border-left:1px solid var(--border);border-right:1px solid var(--border);padding:0;align-items:stretch}
+  .nav-links.open{display:flex}
+  .nav-links li{border-bottom:1px solid var(--border)}
+  .nav-links a{display:block;padding:16px 24px;font-size:.7rem}
+  .nav-cta{clip-path:none!important;display:block;text-align:center;padding:13px!important}
+  .nav-login{display:block;text-align:center;padding:13px!important}
+}
+.container{width:min(1160px,92%);margin:0 auto;padding:clamp(70px,10vw,130px) 0}
+.sec-title{font-family:var(--ff-display);font-size:clamp(2.6rem,6vw,5.5rem);line-height:.9;letter-spacing:.02em;color:var(--white);text-align:center;margin-bottom:2rem}
+.sec-title em{font-style:normal;background:linear-gradient(135deg,var(--red2) 0%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.study-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(18px,3vw,28px);margin-top:clamp(36px,5vw,55px)}
+.study-card{background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s var(--ease);cursor:none;position:relative}
+@media(pointer:coarse){.study-card{cursor:pointer}}
+.study-card:hover{border-color:var(--border-hot);box-shadow:var(--glow-r);transform:translateY(-4px)}
+.study-img-wrap{overflow:hidden;height:180px;position:relative}
+.study-img-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) brightness(.8);transition:filter .4s,transform .4s var(--ease)}
+.study-card:hover .study-img-wrap img{filter:saturate(1) brightness(1);transform:scale(1.05)}
+.study-body{padding:clamp(16px,2.5vw,20px)}
+.study-tag{font-family:var(--ff-mono);font-size:.58rem;color:var(--red2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.study-title{font-family:var(--ff-display);font-size:1.3rem;color:var(--white);line-height:1.1;letter-spacing:.02em;margin-bottom:6px}
+.study-desc{font-size:.85rem;line-height:1.6;color:var(--text);margin-bottom:16px}
+.study-download{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:.62rem;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.study-download:hover{color:var(--white)}
+.study-download::after{content:'↓'}
+@media(max-width:768px){.study-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">KarasuBerry</span>
+      <span class="nav-logo-sub">aayan parmar · dev &amp; creator</span>
+    </a>
+    <ul class="nav-links" id="navlinks">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#explore">Explore</a></li>
+      <li><a href="studyarea.html" class="active">StudyArea</a></li>
+      <li><a href="dailyupdates.html">DailyUpdates</a></li>
+      <li><a href="announcements.html">Announcements</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+      <li><a href="auth.html" class="nav-login">Login / Register</a></li>
+    </ul>
+    <button id="ham" aria-label="Toggle menu" aria-expanded="false" aria-controls="navlinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="container">
+  <h1 class="sec-title">StudyArea <em>Notes &amp; Resources</em></h1>
+  <div class="study-grid" id="study-grid">
+    <!-- Dynamic content loaded via JS -->
+  </div>
+</div>
+<script>
+/* ── NAV ── */
+var ham=document.getElementById('ham'),navlinks=document.getElementById('navlinks');
+ham.addEventListener('click',function(){
+  var open=navlinks.classList.toggle('open');
+  ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',String(open));
+});
+navlinks.querySelectorAll('a').forEach(function(a){
+  a.addEventListener('click',function(){navlinks.classList.remove('open');ham.classList.remove('open');ham.setAttribute('aria-expanded','false')});
+});
+/* ── DYNAMIC STUDY NOTES ── */
+async function loadStudyNotes() {
   try {
-    const res = await fetch('/api/study');
-    const notes = await res.json();
-    const grid = document.querySelector('.notes-grid');
-    grid.innerHTML = notes.map(note => `
-      <div class="note-card">
-        <h3>${note.title}</h3>
-        <p>${note.description}</p>
-        ${note.pdf_url ? `<a href="${note.pdf_url}" download class="pdf-link">Download PDF</a>` : ''}
+    const res = fetch('/api/content/study');
+    const data = await res.json();
+    const grid = document.getElementById('study-grid');
+    grid.innerHTML = data.map(note => `
+      <div class="study-card">
+        <div class="study-img-wrap"><img src="${note.image_url || 'images/placeholder-study.jpg'}" alt="${note.title}" loading="lazy"/></div>
+        <div class="study-body">
+          <p class="study-tag">${note.type}</p>
+          <h3 class="study-title">${note.title}</h3>
+          <p class="study-desc">${note.description}</p>
+          ${note.pdf_url ? `<a href="${note.pdf_url}" download class="study-download">Download PDF</a>` : ''}
+        </div>
       </div>
     `).join('');
-  } catch (e) { console.log('Study API failed, using static'); }
+  } catch (e) {
+    // Fallback static content
+    document.getElementById('study-grid').innerHTML = `
+      <div class="study-card">
+        <div class="study-img-wrap"><img src="images/web-dev.jpg" alt="Web Dev" loading="lazy"/></div>
+        <div class="study-body">
+          <p class="study-tag">Web Development</p>
+          <h3 class="study-title">Web Dev Basics</h3>
+          <p class="study-desc">Essential HTML/CSS/JS concepts with examples. Focus on responsive design and modern frameworks.</p>
+          <a href="notes/web-basics.pdf" download class="study-download">Download PDF</a>
+        </div>
+      </div>
+      <div class="study-card">
+        <div class="study-img-wrap"><img src="images/linux.jpg" alt="Linux" loading="lazy"/></div>
+        <div class="study-body">
+          <p class="study-tag">Linux</p>
+          <h3 class="study-title">Linux Commands Cheat Sheet</h3>
+          <p class="study-desc">Quick reference for terminal essentials, Git workflows, and server management.</p>
+          <a href="notes/linux-cheatsheet.pdf" download class="study-download">Download PDF</a>
+        </div>
+      </div>
+      <div class="study-card">
+        <div class="study-img-wrap"><img src="images/cyber.jpg" alt="Cybersecurity" loading="lazy"/></div>
+        <div class="study-body">
+          <p class="study-tag">Cybersecurity</p>
+          <h3 class="study-title">Cybersecurity Intro</h3>
+          <p class="study-desc">Beginner guide to ethical hacking, common vulnerabilities, and tools like Wireshark.</p>
+          <a href="notes/cyber-intro.pdf" download class="study-download">Download PDF</a>
+        </div>
+      </div>
+    `;
+  }
 }
-loadStudy();
+loadStudyNotes();
+</script>
+</body>
+</html>
