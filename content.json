@@ -1,28 +1,12 @@
 {
   "projects": [
-    {
-      "title": "College Assignment Portal",
-      "tag": "Web Development",
-      "description": "Modern assignment submission portal.",
-      "image": "images/project1.png",
-      "url": "https://github.com/AustinKarasu/zyrowebsite"
-    }
+    {"id":1,"title":"College Portal","description":"Responsive web app","image_url":"images/project1.png"},
+    {"id":2,"title":"Zyro Launcher","description":"Custom launcher","image_url":"images/project2.png"}
   ],
-
-  "videos": [
-    {
-      "title": "Sanemi Edit 🔥",
-      "date": "03 · 05 · 2026",
-      "tag": "#DemonSlayer",
-      "thumbnail": "https://img.youtube.com/vi/a8lnvzeRmGM/maxresdefault.jpg",
-      "url": "https://www.youtube.com/shorts/a8lnvzeRmGM"
-    }
+  "study": [
+    {"id":1,"title":"Web Basics","description":"HTML/CSS notes","pdf_url":"notes/web.pdf"}
   ],
-
-  "gallery": [
-    {
-      "title": "Hacking Training",
-      "image": "images/img1.jpeg"
-    }
+  "updates": [
+    {"id":1,"title":"New Edit","content":"Sanemi 4K out now!"}
   ]
 }
