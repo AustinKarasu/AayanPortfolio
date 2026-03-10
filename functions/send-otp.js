@@ -1,33 +1,20 @@
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ env, request }) {
+  const { phone } = await request.json();
+  const code = Math.floor(100000 + Math.random() * 900000).toString();
 
- const { phone } = await request.json()
+  await env.DB.prepare(`
+    INSERT OR REPLACE INTO phone_codes (phone, code, expires_at) 
+    VALUES (?, ?, datetime('now', '+5 minutes'))
+  `).bind(phone, code).run();
 
- if(!phone){
-  return new Response("Phone required",{status:400})
- }
+  // Twilio
+  const twilio = await import('twilio');
+  const client = twilio.default(env.TWILIO_ACCOUNT_SID, env.TWILIO_AUTH_TOKEN);
+  await client.messages.create({
+    body: `KarasuBerry OTP: ${code}`,
+    from: env.TWILIO_PHONE,
+    to: phone
+  });
 
- const otp = Math.floor(100000 + Math.random()*900000)
-
- await env.DB.prepare(
-  "INSERT OR REPLACE INTO otp_codes(phone,code) VALUES(?,?)"
- ).bind(phone,otp).run()
-
- await fetch(
-  `https://api.twilio.com/2010-04-01/Accounts/${env.TWILIO_SID}/Messages.json`,
-  {
-   method:"POST",
-   headers:{
-    Authorization:"Basic "+btoa(`${env.TWILIO_SID}:${env.TWILIO_TOKEN}`),
-    "Content-Type":"application/x-www-form-urlencoded"
-   },
-   body:new URLSearchParams({
-    To:phone,
-    From:env.TWILIO_PHONE,
-    Body:`Your KarasuBerry verification code: ${otp}`
-   })
-  }
- )
-
- return Response.json({success:true})
-
+  return new Response(JSON.stringify({ message: 'OTP sent' }), { status: 200 });
 }
