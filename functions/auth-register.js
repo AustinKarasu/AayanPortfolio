@@ -1,15 +1,20 @@
-import bcrypt from "bcryptjs"
+export async function onRequestPost({ env, request }) {
+  const { username, email, password, phone } = await request.json();
+  const code = Math.floor(100000 + Math.random() * 900000).toString();
 
-export async function onRequestPost({ request, env }) {
+  await env.DB.prepare(`
+    INSERT OR REPLACE INTO phone_codes (phone, code, expires_at) 
+    VALUES (?, ?, datetime('now', '+5 minutes'))
+  `).bind(phone, code).run();
 
- const { username, phone, password } = await request.json()
+  // Twilio SMS
+  const twilio = await import('twilio');
+  const client = twilio.default(env.TWILIO_ACCOUNT_SID, env.TWILIO_AUTH_TOKEN);
+  await client.messages.create({
+    body: `KarasuBerry Verify: ${code}`,
+    from: env.TWILIO_PHONE,
+    to: phone
+  });
 
- const hash = await bcrypt.hash(password,10)
-
- await env.DB.prepare(
-  "INSERT INTO users(username,phone,password_hash) VALUES(?,?,?)"
- ).bind(username,phone,hash).run()
-
- return Response.json({ success:true })
-
+  return new Response(JSON.stringify({ message: 'OTP sent to phone' }), { status: 200 });
 }
