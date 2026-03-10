@@ -1,209 +1,25 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KarasuBerry Authentication</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-<style>
-
-body{
-margin:0;
-background:#080006;
-font-family:Outfit,system-ui;
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-height:100vh;
-}
-
-.card{
-width:420px;
-background:#120008;
-border:1px solid rgba(255,255,255,.08);
-padding:40px;
-border-radius:8px;
-box-shadow:0 20px 60px rgba(0,0,0,.6);
-}
-
-h1{
-text-align:center;
-margin-bottom:25px;
-font-size:30px;
-letter-spacing:1px;
-}
-
-.tabs{
-display:flex;
-margin-bottom:20px;
-border-bottom:1px solid rgba(255,255,255,.1);
-}
-
-.tabs button{
-flex:1;
-padding:12px;
-background:none;
-border:none;
-color:#aaa;
-font-weight:500;
-cursor:pointer;
-}
-
-.tabs button.active{
-color:#fff;
-border-bottom:2px solid #c8141e;
-}
-
-form{
-display:none;
-}
-
-form.active{
-display:block;
-}
-
-input{
-width:100%;
-padding:12px;
-margin-bottom:12px;
-background:#1a000c;
-border:1px solid rgba(255,255,255,.1);
-border-radius:6px;
-color:white;
-font-size:14px;
-}
-
-button.submit{
-width:100%;
-padding:12px;
-background:#c8141e;
-border:none;
-border-radius:6px;
-color:white;
-font-weight:600;
-cursor:pointer;
-margin-top:5px;
-}
-
-button.submit:hover{
-background:#e8303a;
-}
-
-.otp-row{
-display:flex;
-gap:10px;
-}
-
-.otp-row input{
-flex:1;
-}
-
-.otp-row button{
-padding:10px;
-background:#c8141e;
-border:none;
-border-radius:6px;
-color:white;
-cursor:pointer;
-font-size:12px;
-}
-
-.msg{
-text-align:center;
-margin-top:10px;
-font-size:14px;
-color:#ff6b6b;
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auth - KarasuBerry</title>
+  <style>:root{--bg:#080006;--card:#16000c;--red:#c8141e;--white:#f5eeea;--ff-body:'Outfit',sans-serif}body{background:var(--bg);color:var(--white);font-family:var(--ff-body);display:flex;justify-content:center;align-items:center;height:100vh;margin:0}.auth-form{background:var(--card);padding:2rem;border-radius:0.5rem;max-width:400px;width:100%;text-align:center}input,button{width:100%;padding:0.75rem;margin:0.5rem 0;border:1px solid #333;border-radius:0.25rem}button{background:var(--red);color:var(--white);border:none;cursor:pointer}button:hover{background:#e8303a}#qrCode{max-width:200px;margin-top:1rem}</style>
 </head>
-
 <body>
-
-<div class="card">
-
-<h1>KarasuBerry</h1>
-
-<div class="tabs">
-<button id="loginTab" class="active">Login</button>
-<button id="registerTab">Register</button>
-</div>
-
-<!-- LOGIN -->
-
-<form id="loginForm" class="active">
-
-<input id="loginUser" placeholder="Username">
-
-<input id="loginPass" type="password" placeholder="Password">
-
-<button type="button" id="loginBtn" class="submit">
-Login
-</button>
-
-</form>
-
-<!-- REGISTER -->
-
-<form id="registerForm">
-
-<input id="regUser" placeholder="Username">
-
-<input id="regPhone" placeholder="Phone (+countrycode)">
-
-<div class="otp-row">
-<input id="otpCode" placeholder="OTP Code">
-<button type="button" id="sendOTPBtn" onclick="sendOTP()">
-Send OTP
-</button>
-</div>
-
-<input id="regPass" type="password" placeholder="Password">
-
-<input id="regPass2" type="password" placeholder="Confirm password">
-
-<button type="button" class="submit" onclick="registerUser()">
-Create Account
-</button>
-
-</form>
-
-<div id="msg" class="msg"></div>
-
-</div>
-
-<script src="js/auth.js"></script>
-
-<script>
-
-/* TAB SWITCH */
-
-const loginTab=document.getElementById("loginTab")
-const registerTab=document.getElementById("registerTab")
-
-const loginForm=document.getElementById("loginForm")
-const registerForm=document.getElementById("registerForm")
-
-loginTab.onclick=()=>{
-loginTab.classList.add("active")
-registerTab.classList.remove("active")
-loginForm.classList.add("active")
-registerForm.classList.remove("active")
-}
-
-registerTab.onclick=()=>{
-registerTab.classList.add("active")
-loginTab.classList.remove("active")
-registerForm.classList.add("active")
-loginForm.classList.remove("active")
-}
-
-</script>
-
+  <div class="auth-form">
+    <h2>Login / Register</h2>
+    <input type="tel" id="phone" placeholder="Phone (e.g., +919816157745)" required>
+    <button onclick="sendOTP()">Send OTP</button>
+    <input type="text" id="otp" placeholder="Enter OTP">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <button onclick="setup2FA()">Setup 2FA</button>
+    <img id="qrCode" style="display:none">
+  </div>
+  <script type="module">
+    import { apiCall } from './api.js';
+    // Paste full auth.js code here (sendOTP, verifyOTP, login, setup2FA)
+  </script>
 </body>
 </html>
