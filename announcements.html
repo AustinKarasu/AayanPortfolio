@@ -3,50 +3,523 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<meta name="theme-color" content="#0a0005"/>
+<meta name="theme-color" content="#06000a"/>
 <title>Announcements · KarasuBerry</title>
+<meta name="description" content="Official announcements from KarasuBerry — Aayan Parmar. Project launches, stream schedules, new content and major news."/>
+<meta property="og:title" content="Announcements · KarasuBerry"/>
+<meta property="og:url" content="https://karasuberry.fun/announcements.html"/>
+<link rel="canonical" href="https://karasuberry.fun/announcements.html"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#080006;--bg2:#0e000a;--surface:#120008;--card:#16000c;--border:rgba(255,255,255,0.07);--border-hot:rgba(200,20,40,0.35);--red:#c8141e;--red2:#e8303a;--gold:#c9a84c;--gold2:#e8c97a;--white:#f5eeea;--muted:#5a4a50;--text:#b8a8ad;--glow-r:0 0 40px rgba(200,20,40,0.4);--ff-display:'Bebas Neue',sans-serif;--ff-body:'Outfit',sans-serif;--ff-mono:'JetBrains Mono',monospace;--ease:cubic-bezier(.23,1,.32,1)}
+:root{
+  --bg:#06000a;--bg2:#0a000f;--surface:#0e0014;--card:#130019;--card2:#18001f;
+  --border:rgba(255,255,255,0.06);--border-hot:rgba(195,15,45,0.4);--border-gold:rgba(205,160,55,0.3);
+  --red:#c30f2d;--red2:#e8253f;--red3:#ff4d65;
+  --gold:#c9a037;--gold2:#e8c060;
+  --white:#f0e8ec;--muted:#4a3a42;--text:#9a8590;
+  --glow-r:0 0 50px rgba(195,15,45,0.3),0 0 100px rgba(195,15,45,0.1);
+  --glow-r-sm:0 0 18px rgba(195,15,45,0.35);
+  --ff-d:'Syne',sans-serif;--ff-b:'Bricolage Grotesque',sans-serif;--ff-m:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--text);font-family:var(--ff-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-b);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+@media(pointer:coarse){body{cursor:auto}}
 img{display:block;max-width:100%;height:auto}
 a{text-decoration:none;color:inherit}
-button{font-family:inherit;cursor:pointer}
+button{font-family:inherit;cursor:none;border:none;background:none}
+@media(pointer:coarse){button{cursor:pointer}}
+ul{list-style:none}
 ::-webkit-scrollbar{width:2px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
-nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:clamp(14px,2.5vw,22px) 0;background:rgba(8,0,6,.9);border-bottom:1px solid var(--border)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative;margin:0 clamp(1rem,5vw,2rem)}
-.nav-logo{font-family:var(--ff-display);font-size:clamp(1.2rem,2.5vw,1.65rem);letter-spacing:.06em;line-height:1;display:flex;flex-direction:column}
-.nav-logo-main{background:linear-gradient(90deg,#fff 20%,var(--red2) 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.nav-logo-sub{font-family:var(--ff-mono);font-size:.4rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;-webkit-text-fill-color:var(--muted);margin-top:2px}
-.nav-links{display:flex;align-items:center;gap:clamp(18px,3vw,38px);list-style:none}
-.nav-links a{font-family:var(--ff-mono);font-size:.63rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;position:relative;transition:color .3s;padding-bottom:3px}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--red2);transition:width .35s var(--ease)}
-.nav-links a:hover,.nav-links a.active{color:var(--white)}
-.nav-links a:hover::after,.nav-links a.active::after{width:100%}
-.nav-cta{color:var(--bg)!important;background:var(--red)!important;padding:9px 22px!important;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:background .3s,box-shadow .3s,transform .2s!important}
-.nav-cta::after{display:none!important}
-.nav-cta:hover{background:var(--gold)!important;box-shadow:var(--glow-g)!important;color:#000!important;transform:translateY(-1px)}
-.nav-login{background:transparent!important;color:var(--gold)!important;border:1px solid rgba(201,168,76,.3);clip-path:none!important;padding:9px 22px!important;border-radius:4px;transition:all .3s}
-.nav-login:hover{border-color:var(--gold);box-shadow:var(--glow-g);color:var(--white)}
-#ham{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:6px}
+::-webkit-scrollbar-thumb{background:var(--red)}
+::selection{background:rgba(195,15,45,.3);color:var(--white)}
+:focus-visible{outline:1px solid var(--red);outline-offset:3px;border-radius:2px}
+
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--red),var(--gold));z-index:9000;box-shadow:0 0 8px rgba(195,15,45,.6)}
+#cur,#cur-ring{position:fixed;pointer-events:none;border-radius:50%;z-index:9999;transform:translate(-50%,-50%);display:none}
+@media(pointer:fine){#cur,#cur-ring{display:block}}
+#cur{width:7px;height:7px;background:var(--red2)}
+#cur-ring{width:32px;height:32px;border:1px solid rgba(195,15,45,.45);transition:width .3s var(--ease),height .3s var(--ease),border-color .3s}
+body.hov #cur-ring{width:46px;height:46px;border-color:rgba(201,160,55,.55)}
+body.hov #cur{opacity:0}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);animation:orbF 22s ease-in-out infinite alternate}
+.orb-1{width:min(600px,80vw);height:min(600px,80vw);top:-20%;left:-10%;background:radial-gradient(circle,rgba(160,8,25,.15),transparent 65%)}
+.orb-2{width:min(500px,70vw);height:min(500px,70vw);bottom:-15%;right:-8%;background:radial-gradient(circle,rgba(130,5,15,.12),transparent 65%);animation-duration:27s;animation-delay:-11s}
+@keyframes orbF{0%{transform:translate(0,0)}100%{transform:translate(45px,35px)}}
+.ambient::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(195,15,45,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(195,15,45,.022) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%)}
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:clamp(14px,2.5vw,20px) 0;transition:background .4s,padding .3s}
+#nav.scrolled{background:rgba(6,0,10,.9);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(1180px,92%);margin:0 auto}
+.nav-logo{font-family:var(--ff-d);font-weight:800;font-size:clamp(1.1rem,2.3vw,1.5rem);letter-spacing:-.02em;display:flex;flex-direction:column;gap:2px}
+.logo-main{background:linear-gradient(100deg,#fff 10%,var(--red3) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-sub{font-family:var(--ff-m);font-weight:300;font-size:.38rem;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;-webkit-text-fill-color:var(--muted)}
+.nav-menu{display:flex;align-items:center;gap:clamp(14px,2.2vw,28px)}
+.nav-link{font-family:var(--ff-m);font-size:.62rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;position:relative;padding-bottom:4px;transition:color .3s}
+.nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--red2);transition:width .3s var(--ease)}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-link:hover::after,.nav-link.active::after{width:100%}
+.nav-cta{font-family:var(--ff-m);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px;background:var(--red);color:#fff;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:background .2s,box-shadow .2s}
+.nav-cta:hover{background:var(--red2);box-shadow:var(--glow-r-sm);color:#fff}
+#ham{display:none;flex-direction:column;gap:5px;padding:6px;cursor:pointer}
 #ham span{display:block;width:22px;height:1.5px;background:var(--text);transition:transform .3s,opacity .3s,background .3s}
 #ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);background:var(--red2)}
 #ham.open span:nth-child(2){opacity:0}
 #ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);background:var(--red2)}
-@media(max-width:768px){
+@media(max-width:820px){
   #ham{display:flex}
-  .nav-links{display:none;position:absolute;top:calc(100% + 1px);left:-4%;right:-4%;flex-direction:column;gap:0;background:rgba(8,0,6,.97);border-bottom:1px solid var(--border);border-left:1px solid var(--border);border-right:1px solid var(--border);padding:0;align-items:stretch}
-  .nav-links.open{display:flex}
-  .nav-links li{border-bottom:1px solid var(--border)}
-  .nav-links a{display:block;padding:16px 24px;font-size:.7rem}
-  .nav-cta{clip-path:none!important;display:block;text-align:center;padding:13px!important}
-  .nav-login{display:block;text-align:center;padding:13px!important}
+  .nav-menu{display:none;position:absolute;top:calc(100% + 1px);left:-4%;right:-4%;flex-direction:column;gap:0;align-items:stretch;background:rgba(6,0,10,.97);backdrop-filter:blur(24px);border:1px solid var(--border);border-top:none;padding:8px 0}
+  .nav-menu.open{display:flex}
+  .nav-link{padding:14px 24px;font-size:.68rem}
+  .nav-link::after{display:none}
+  .nav-cta{clip-path:none;text-align:center;padding:14px 24px;display:block;background:none;color:var(--red2)}
 }
-.container{width:min(1160px,92%);margin:0 auto;padding:clamp(70px,10vw,130px) 0}
-.sec-title{font-family:var(--ff-display);font-size:clamp(2.6rem
+.wrap{position:relative;z-index:2}
+.container{width:min(1180px,92%);margin:0 auto}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:translateY(0)}
+#btt{position:fixed;bottom:28px;right:24px;z-index:800;width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--border-hot);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--red2);cursor:pointer;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,box-shadow .2s;pointer-events:none}
+#btt.show{opacity:1;transform:translateY(0);pointer-events:auto}
+#btt:hover{box-shadow:var(--glow-r-sm);color:var(--white)}
+
+/* PAGE HERO */
+.page-hero{padding:clamp(130px,18vw,200px) 0 clamp(50px,7vw,80px);position:relative;overflow:hidden}
+.page-hero-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--ff-d);font-weight:800;font-size:clamp(5rem,20vw,18rem);color:transparent;-webkit-text-stroke:1px rgba(195,15,45,.04);letter-spacing:-.04em;white-space:nowrap;pointer-events:none;user-select:none}
+.page-eyebrow{font-family:var(--ff-m);font-size:.6rem;color:var(--red2);letter-spacing:.25em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.page-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:linear-gradient(90deg,var(--red2),transparent)}
+.page-title{font-family:var(--ff-d);font-weight:800;font-size:clamp(3rem,8vw,7rem);color:var(--white);line-height:.88;letter-spacing:-.04em;margin-bottom:20px}
+.page-title em{font-style:normal;color:var(--red2)}
+.page-desc{font-size:1rem;line-height:1.75;max-width:560px;color:var(--text)}
+
+/* PINNED ANNOUNCEMENT */
+.pinned-wrap{margin-bottom:clamp(50px,7vw,80px)}
+.pinned-label{
+  font-family:var(--ff-m);font-size:.58rem;color:var(--gold);
+  letter-spacing:.18em;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;margin-bottom:16px;
+}
+.pinned-label::before{content:'📌';font-size:.75rem}
+.pinned-card{
+  background:var(--card2);
+  border:1px solid rgba(201,160,55,.35);
+  border-radius:16px;overflow:hidden;
+  position:relative;
+  transition:border-color .3s,box-shadow .3s,transform .3s var(--ease));
+}
+.pinned-card:hover{border-color:var(--gold2);box-shadow:var(--glow-g);transform:translateY(-3px)}
+.pinned-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(201,160,55,.06),transparent 60%);
+  pointer-events:none;
+}
+.pinned-inner{
+  display:grid;grid-template-columns:1fr auto;gap:30px;padding:clamp(24px,4vw,40px);align-items:center;
+}
+@media(max-width:640px){.pinned-inner{grid-template-columns:1fr}}
+.pinned-eyebrow{
+  font-family:var(--ff-m);font-size:.58rem;color:var(--gold);
+  letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.pinned-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.pinned-title{
+  font-family:var(--ff-d);font-weight:800;
+  font-size:clamp(1.6rem,4vw,2.8rem);color:var(--white);
+  line-height:.9;letter-spacing:-.03em;margin-bottom:16px;
+}
+.pinned-text{font-size:.95rem;line-height:1.75;color:var(--text);max-width:580px;margin-bottom:22px}
+.pinned-meta{
+  display:flex;align-items:center;gap:16px;
+  font-family:var(--ff-m);font-size:.55rem;color:var(--muted);
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.pinned-meta span{color:var(--text)}
+.pinned-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 28px;
+  font-family:var(--ff-m);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--red);color:#fff;
+  clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+  transition:background .2s,box-shadow .2s,transform .2s;
+  flex-shrink:0;align-self:center;
+}
+.pinned-cta:hover{background:var(--red2);box-shadow:var(--glow-r-sm);transform:translateY(-2px);color:#fff}
+@media(pointer:coarse){.pinned-cta{cursor:pointer}}
+
+/* FILTER */
+.filter-bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:clamp(24px,4vw,40px)}
+.search-wrap{position:relative;flex:1;min-width:240px}
+.search-input{width:100%;padding:12px 16px 12px 44px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:var(--ff-b);font-size:.9rem;transition:border-color .2s,box-shadow .2s}
+.search-input:focus{outline:none;border-color:var(--border-hot);box-shadow:0 0 0 3px rgba(195,15,45,.08)}
+.search-input::placeholder{color:var(--muted)}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:.85rem;color:var(--muted);pointer-events:none}
+.filter-chips{display:flex;gap:8px;flex-wrap:wrap}
+.fchip{font-family:var(--ff-m);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:99px;color:var(--muted);background:var(--card);transition:border-color .2s,color .2s,background .2s;cursor:pointer}
+.fchip:hover{border-color:var(--border-hot);color:var(--white)}
+.fchip.active{border-color:var(--red2);color:var(--white);background:rgba(195,15,45,.1)}
+@media(pointer:coarse){.fchip{cursor:pointer}}
+.results-line{font-family:var(--ff-m);font-size:.58rem;color:var(--muted);letter-spacing:.1em;margin-bottom:22px}
+.results-line span{color:var(--red2)}
+
+/* ANNOUNCE GRID */
+.ann-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:clamp(18px,3vw,26px);
+}
+@media(max-width:500px){.ann-grid{grid-template-columns:1fr}}
+.ann-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  transition:border-color .3s,box-shadow .35s,transform .35s var(--ease));
+  cursor:none;display:flex;flex-direction:column;
+}
+@media(pointer:coarse){.ann-card{cursor:pointer}}
+.ann-card:hover{border-color:var(--border-hot);box-shadow:var(--glow-r);transform:translateY(-5px)}
+.ann-card.hidden{display:none}
+
+.ann-thumb{
+  height:200px;overflow:hidden;background:var(--surface);
+  position:relative;flex-shrink:0;
+}
+.ann-thumb img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.6) brightness(.75);
+  transition:filter .4s,transform .4s var(--ease));
+}
+.ann-card:hover .ann-thumb img{filter:saturate(1) brightness(1);transform:scale(1.07)}
+.ann-thumb-ph{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  font-size:4rem;
+}
+.ann-type-pill{
+  position:absolute;top:12px;left:12px;
+  font-family:var(--ff-m);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 11px;border-radius:99px;backdrop-filter:blur(8px);background:rgba(6,0,10,.75);
+}
+.atype-launch{color:var(--red2);border:1px solid rgba(195,15,45,.35)}
+.atype-update{color:var(--gold);border:1px solid var(--border-gold)}
+.atype-event{color:#8b5cf6;border:1px solid rgba(139,92,246,.35)}
+.atype-collab{color:#06b6d4;border:1px solid rgba(6,182,212,.3)}
+.atype-info{color:var(--text);border:1px solid var(--border)}
+
+.ann-body{padding:clamp(18px,2.5vw,24px);display:flex;flex-direction:column;flex:1}
+.ann-date{
+  font-family:var(--ff-m);font-size:.52rem;color:var(--muted);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;
+}
+.ann-title{
+  font-family:var(--ff-d);font-weight:700;
+  font-size:1.35rem;color:var(--white);
+  line-height:1.05;letter-spacing:-.02em;margin-bottom:12px;
+}
+.ann-excerpt{font-size:.86rem;line-height:1.68;color:var(--text);flex:1;margin-bottom:18px}
+.ann-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:14px;border-top:1px solid var(--border);
+  margin-top:auto;
+}
+.ann-readmore{
+  font-family:var(--ff-m);font-size:.6rem;color:var(--gold);
+  letter-spacing:.08em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:color .2s,gap .2s;
+}
+.ann-readmore::after{content:'→'}
+.ann-card:hover .ann-readmore{color:var(--white);gap:10px}
+.ann-tags{display:flex;gap:5px}
+.a-tag{
+  font-family:var(--ff-m);font-size:.48rem;color:var(--muted);
+  padding:2px 7px;border:1px solid var(--border);border-radius:2px;
+}
+
+/* EMPTY */
+.empty-state{grid-column:1/-1;padding:80px 20px;text-align:center}
+.empty-state .icon{font-size:3rem;margin-bottom:16px;opacity:.3}
+.empty-state h3{font-family:var(--ff-d);font-size:1.5rem;color:var(--muted);font-weight:700;letter-spacing:-.02em}
+.empty-state p{font-family:var(--ff-m);font-size:.62rem;color:var(--muted);letter-spacing:.1em;margin-top:8px}
+
+footer{border-top:1px solid var(--border);padding:clamp(36px,5vw,55px) 0;margin-top:clamp(80px,10vw,130px)}
+.foot-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.foot-brand{font-family:var(--ff-d);font-weight:800;font-size:1.2rem;letter-spacing:-.02em;background:linear-gradient(90deg,var(--white),var(--red2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.foot-links{display:flex;gap:22px}
+.foot-links a{font-family:var(--ff-m);font-size:.58rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.foot-links a:hover{color:var(--white)}
+.foot-copy{font-family:var(--ff-m);font-size:.55rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+<div id="cur" aria-hidden="true"></div>
+<div id="cur-ring" aria-hidden="true"></div>
+<div class="ambient" aria-hidden="true"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+<button id="btt" aria-label="Back to top">↑</button>
+
+<div class="wrap">
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="KarasuBerry home">
+      <span class="logo-main">KarasuBerry</span>
+      <span class="logo-sub">aayan parmar · dev &amp; creator</span>
+    </a>
+    <ul class="nav-menu" id="navMenu" role="list">
+      <li><a href="index.html#about" class="nav-link">About</a></li>
+      <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+      <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+      <li><a href="index.html#explore" class="nav-link">Explore</a></li>
+      <li><a href="studyarea.html" class="nav-link">StudyArea</a></li>
+      <li><a href="dailyupdates.html" class="nav-link">Daily</a></li>
+      <li><a href="announcements.html" class="nav-link active">News</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button id="ham" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="page-hero" aria-label="Announcements header">
+  <div class="page-hero-bg" aria-hidden="true">NEWS</div>
+  <div class="container">
+    <p class="page-eyebrow">Announcements</p>
+    <h1 class="page-title">What's <em>New</em></h1>
+    <p class="page-desc">Official drops, project launches, stream schedules, collabs, and major news from the KarasuBerry universe. Stay updated.</p>
+  </div>
+</section>
+
+<main class="container" style="padding-bottom:clamp(80px,10vw,130px)">
+
+  <!-- Pinned Announcement -->
+  <div class="pinned-wrap rv">
+    <p class="pinned-label">Pinned Announcement</p>
+    <div class="pinned-card">
+      <div class="pinned-inner">
+        <div>
+          <div class="pinned-eyebrow">
+            <span class="pinned-dot"></span>
+            Live Now · Major Update
+          </div>
+          <h2 class="pinned-title">KarasuBerry Portfolio v2 — Officially Live</h2>
+          <p class="pinned-text">The new portfolio is here. Rebuilt from the ground up — premium design system, full SEO, StudyArea, Daily Updates, and this announcements page. This is the foundation everything else will be built on.</p>
+          <div class="pinned-meta">
+            <span>📅 March 22, 2026</span>
+            <span>·</span>
+            <span>🔥 Major Launch</span>
+          </div>
+        </div>
+        <a href="index.html" class="pinned-cta" aria-label="View portfolio">View Portfolio →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar rv">
+    <div class="search-wrap">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input type="search" class="search-input" id="searchInput"
+        placeholder="Search announcements…" aria-label="Search announcements"/>
+    </div>
+    <div class="filter-chips" role="group" aria-label="Filter by type">
+      <button class="fchip active" data-cat="all">All</button>
+      <button class="fchip" data-cat="launch">Launch</button>
+      <button class="fchip" data-cat="update">Update</button>
+      <button class="fchip" data-cat="event">Event</button>
+      <button class="fchip" data-cat="collab">Collab</button>
+      <button class="fchip" data-cat="info">Info</button>
+    </div>
+  </div>
+
+  <p class="results-line rv"><span id="resultCount">6</span> announcements</p>
+
+  <!-- Grid -->
+  <div class="ann-grid" id="annGrid">
+
+    <article class="ann-card rv" data-cat="launch" data-text="KarasuBerry portfolio redesign version 2 launch">
+      <div class="ann-thumb">
+        <div class="ann-thumb-ph">🚀</div>
+        <span class="ann-type-pill atype-launch">Launch</span>
+      </div>
+      <div class="ann-body">
+        <p class="ann-date">Mar 22, 2026</p>
+        <h2 class="ann-title">Portfolio v2 — Full Redesign Shipped</h2>
+        <p class="ann-excerpt">KarasuBerry.fun has been fully rebuilt. New design system, SEO optimisation, auth system, StudyArea, Daily Updates, and Announcements pages. This is the new base.</p>
+        <div class="ann-footer">
+          <span class="ann-readmore">Read more</span>
+          <div class="ann-tags"><span class="a-tag">Web</span><span class="a-tag">Design</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="ann-card rv" data-cat="update" data-text="StudyArea resources section added with downloadable notes">
+      <div class="ann-thumb">
+        <div class="ann-thumb-ph">📚</div>
+        <span class="ann-type-pill atype-update">Update</span>
+      </div>
+      <div class="ann-body">
+        <p class="ann-date">Mar 22, 2026</p>
+        <h2 class="ann-title">StudyArea is Live — Free Notes Available</h2>
+        <p class="ann-excerpt">The StudyArea section is now open. Free downloadable notes on cybersecurity, web dev, Linux, and more. Members get exclusive access to premium material.</p>
+        <div class="ann-footer">
+          <span class="ann-readmore">Read more</span>
+          <div class="ann-tags"><span class="a-tag">StudyArea</span><span class="a-tag">Resources</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="ann-card rv" data-cat="launch" data-text="Sanemi Edit 4K Demon Slayer YouTube short released">
+      <div class="ann-thumb">
+        <img src="https://img.youtube.com/vi/a8lnvzeRmGM/maxresdefault.jpg" alt="Sanemi Edit" loading="lazy"
+          onerror="this.parentElement.innerHTML='<div class=ann-thumb-ph>🎬</div>'"/>
+        <span class="ann-type-pill atype-launch">Content Drop</span>
+      </div>
+      <div class="ann-body">
+        <p class="ann-date">Mar 05, 2026</p>
+        <h2 class="ann-title">Sanemi Edit [4K] — New YouTube Short</h2>
+        <p class="ann-excerpt">A new Demon Slayer AMV short just dropped on KarasuBerry YouTube. Featuring Sanemi Shinazugawa — intense colour grading and sync cuts.</p>
+        <div class="ann-footer">
+          <a href="https://www.youtube.com/shorts/a8lnvzeRmGM" target="_blank" rel="noopener noreferrer" class="ann-readmore" aria-label="Watch on YouTube">Watch now</a>
+          <div class="ann-tags"><span class="a-tag">YouTube</span><span class="a-tag">AMV</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="ann-card rv" data-cat="event" data-text="Discord server community open for all members">
+      <div class="ann-thumb">
+        <div class="ann-thumb-ph">🎮</div>
+        <span class="ann-type-pill atype-event">Community</span>
+      </div>
+      <div class="ann-body">
+        <p class="ann-date">Feb 20, 2026</p>
+        <h2 class="ann-title">Discord Server is Open — Join the Community</h2>
+        <p class="ann-excerpt">The KarasuBerry Discord is open to all. Dev talk, gaming sessions, anime discussions, study groups. Link in the Contact section.</p>
+        <div class="ann-footer">
+          <a href="https://discord.gg/kmVE6dnX5H" target="_blank" rel="noopener noreferrer" class="ann-readmore" aria-label="Join Discord">Join Discord</a>
+          <div class="ann-tags"><span class="a-tag">Discord</span><span class="a-tag">Community</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="ann-card rv" data-cat="update" data-text="Google Cybersecurity Certificate completed achievement">
+      <div class="ann-thumb">
+        <img src="images/img2.jpeg" alt="Google Cybersecurity Cert" loading="lazy"
+          onerror="this.parentElement.innerHTML='<div class=ann-thumb-ph>🛡️</div>'"/>
+        <span class="ann-type-pill atype-update">Achievement</span>
+      </div>
+      <div class="ann-body">
+        <p class="ann-date">Feb 28, 2026</p>
+        <h2 class="ann-title">Google Cybersecurity Certificate — Completed</h2>
+        <p class="ann-excerpt">All 8 courses done. Google Cybersecurity Professional Certificate is officially in the bag. Notes and study material will be uploaded to StudyArea soon.</p>
+        <div class="ann-footer">
+          <span class="ann-readmore">Read more</span>
+          <div class="ann-tags"><span class="a-tag">Cybersecurity</span><span class="a-tag">Google</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="ann-card rv" data-cat="info" data-text="Minecraft server plugins PHP open source GitHub">
+      <div class="ann-thumb">
+        <div class="ann-thumb-ph">⛏️</div>
+        <span class="ann-type-pill atype-info">Open Source</span>
+      </div>
+      <div class="ann-body">
+        <p class="ann-date">Jan 15, 2026</p>
+        <h2 class="ann-title">Minecraft Plugins — Now Open Source on GitHub</h2>
+        <p class="ann-excerpt">The custom Minecraft PHP plugins I've been building are now public on GitHub. Fork, contribute, or use them for your own server. Free for everyone.</p>
+        <div class="ann-footer">
+          <a href="https://github.com/AustinKarasu" target="_blank" rel="noopener noreferrer" class="ann-readmore" aria-label="View on GitHub">View on GitHub</a>
+          <div class="ann-tags"><span class="a-tag">GitHub</span><span class="a-tag">PHP</span><span class="a-tag">OSS</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Empty state -->
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div class="icon">📭</div>
+      <h3>Nothing found</h3>
+      <p>Try a different search or category</p>
+    </div>
+
+  </div>
+</main>
+
+<footer role="contentinfo">
+  <div class="container foot-inner">
+    <div class="foot-brand">KARASUBERRY</div>
+    <ul class="foot-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="studyarea.html">StudyArea</a></li>
+      <li><a href="dailyupdates.html">Daily</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <p class="foot-copy">© <span id="yr"></span> Aayan Parmar · KarasuBerry</p>
+  </div>
+</footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+document.getElementById('yr').textContent = new Date().getFullYear();
+var prog=document.getElementById('progress');
+window.addEventListener('scroll',function(){var s=window.pageYOffset,t=document.documentElement.scrollHeight-innerHeight;prog.style.width=(t>0?(s/t)*100:0)+'%';},{passive:true});
+var btt=document.getElementById('btt');
+window.addEventListener('scroll',function(){btt.classList.toggle('show',window.pageYOffset>400);},{passive:true});
+btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+if(window.matchMedia('(pointer:fine)').matches){
+  var cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+  var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;},{passive:true});
+  function animC(){cur.style.cssText='left:'+mx+'px;top:'+my+'px;';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.cssText='left:'+rx+'px;top:'+ry+'px;';requestAnimationFrame(animC);}
+  requestAnimationFrame(animC);
+  document.querySelectorAll('a,button,.ann-card,.fchip,.pinned-card').forEach(function(el){
+    el.addEventListener('mouseenter',function(){document.body.classList.add('hov');});
+    el.addEventListener('mouseleave',function(){document.body.classList.remove('hov');});
+  });
+}
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.pageYOffset>50);},{passive:true});
+nav.classList.toggle('scrolled',window.pageYOffset>50);
+var ham=document.getElementById('ham'),nm=document.getElementById('navMenu');
+ham.addEventListener('click',function(){var o=nm.classList.toggle('open');ham.classList.toggle('open',o);ham.setAttribute('aria-expanded',String(o));});
+nm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nm.classList.remove('open');ham.classList.remove('open');ham.setAttribute('aria-expanded','false');});});
+var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+/* Search & Filter */
+var cards=Array.from(document.querySelectorAll('.ann-card'));
+var searchInput=document.getElementById('searchInput');
+var fchips=document.querySelectorAll('.fchip');
+var empty=document.getElementById('emptyState');
+var countEl=document.getElementById('resultCount');
+var activeCat='all';
+function applyFilter(){
+  var q=searchInput.value.toLowerCase().trim();
+  var visible=0;
+  cards.forEach(function(c){
+    var cat=c.dataset.cat;
+    var text=(c.dataset.text+' '+(c.querySelector('.ann-title')||{}).textContent+' '+(c.querySelector('.ann-excerpt')||{}).textContent).toLowerCase();
+    var catOk=(activeCat==='all'||cat===activeCat);
+    var searchOk=(!q||text.includes(q));
+    var show=catOk&&searchOk;
+    c.classList.toggle('hidden',!show);
+    if(show) visible++;
+  });
+  countEl.textContent=visible;
+  empty.style.display=visible===0?'block':'none';
+}
+fchips.forEach(function(chip){
+  chip.addEventListener('click',function(){
+    fchips.forEach(function(c){c.classList.remove('active');});
+    chip.classList.add('active');
+    activeCat=chip.dataset.cat;
+    applyFilter();
+  });
+});
+searchInput.addEventListener('input',applyFilter);
+})();
+</script>
+</body>
+</html>
