@@ -1,36 +1,535 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Daily Updates - KarasuBerry</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <style>/* Reuse main CSS for nav, container, sec-title; .updates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; } .update-card { background: var(--card); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--border); } .update-card h3 { color: var(--white); } .update-card p { color: var(--text); } @media (max-width: 768px) { .updates-grid { grid-template-columns: 1fr; } }</style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#06000a"/>
+<title>Daily Updates · KarasuBerry</title>
+<meta name="description" content="Daily updates, logs and progress from KarasuBerry — Aayan Parmar's dev diary, stream highlights and life updates."/>
+<meta property="og:title" content="Daily Updates · KarasuBerry"/>
+<meta property="og:url" content="https://karasuberry.fun/dailyupdates.html"/>
+<link rel="canonical" href="https://karasuberry.fun/dailyupdates.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#06000a;--bg2:#0a000f;--surface:#0e0014;--card:#130019;--card2:#18001f;
+  --border:rgba(255,255,255,0.06);--border-hot:rgba(195,15,45,0.4);--border-gold:rgba(205,160,55,0.3);
+  --red:#c30f2d;--red2:#e8253f;--red3:#ff4d65;
+  --gold:#c9a037;--gold2:#e8c060;
+  --white:#f0e8ec;--muted:#4a3a42;--text:#9a8590;
+  --glow-r:0 0 50px rgba(195,15,45,0.3),0 0 100px rgba(195,15,45,0.1);
+  --glow-r-sm:0 0 18px rgba(195,15,45,0.35);
+  --glow-g:0 0 50px rgba(201,160,55,0.3);
+  --ff-d:'Syne',sans-serif;--ff-b:'Bricolage Grotesque',sans-serif;--ff-m:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-b);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+@media(pointer:coarse){body{cursor:auto}}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:none;border:none;background:none}
+@media(pointer:coarse){button{cursor:pointer}}
+ul{list-style:none}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-thumb{background:var(--red)}
+::selection{background:rgba(195,15,45,.3);color:var(--white)}
+:focus-visible{outline:1px solid var(--red);outline-offset:3px;border-radius:2px}
+
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--red),var(--gold));z-index:9000;box-shadow:0 0 8px rgba(195,15,45,.6)}
+#cur,#cur-ring{position:fixed;pointer-events:none;border-radius:50%;z-index:9999;transform:translate(-50%,-50%);display:none}
+@media(pointer:fine){#cur,#cur-ring{display:block}}
+#cur{width:7px;height:7px;background:var(--red2)}
+#cur-ring{width:32px;height:32px;border:1px solid rgba(195,15,45,.45);transition:width .3s var(--ease),height .3s var(--ease),border-color .3s}
+body.hov #cur-ring{width:46px;height:46px;border-color:rgba(201,160,55,.55)}
+body.hov #cur{opacity:0}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);animation:orbF 22s ease-in-out infinite alternate}
+.orb-1{width:min(600px,80vw);height:min(600px,80vw);top:-20%;left:-10%;background:radial-gradient(circle,rgba(160,8,25,.15),transparent 65%)}
+.orb-2{width:min(500px,70vw);height:min(500px,70vw);bottom:-15%;right:-8%;background:radial-gradient(circle,rgba(130,5,15,.12),transparent 65%);animation-duration:27s;animation-delay:-11s}
+@keyframes orbF{0%{transform:translate(0,0)}100%{transform:translate(45px,35px)}}
+.ambient::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(195,15,45,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(195,15,45,.022) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%)}
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:clamp(14px,2.5vw,20px) 0;transition:background .4s,padding .3s}
+#nav.scrolled{background:rgba(6,0,10,.9);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(1180px,92%);margin:0 auto}
+.nav-logo{font-family:var(--ff-d);font-weight:800;font-size:clamp(1.1rem,2.3vw,1.5rem);letter-spacing:-.02em;display:flex;flex-direction:column;gap:2px}
+.logo-main{background:linear-gradient(100deg,#fff 10%,var(--red3) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-sub{font-family:var(--ff-m);font-weight:300;font-size:.38rem;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;-webkit-text-fill-color:var(--muted)}
+.nav-menu{display:flex;align-items:center;gap:clamp(14px,2.2vw,28px)}
+.nav-link{font-family:var(--ff-m);font-size:.62rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;position:relative;padding-bottom:4px;transition:color .3s}
+.nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--red2);transition:width .3s var(--ease)}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-link:hover::after,.nav-link.active::after{width:100%}
+.nav-cta{font-family:var(--ff-m);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px;background:var(--red);color:#fff;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:background .2s,box-shadow .2s}
+.nav-cta:hover{background:var(--red2);box-shadow:var(--glow-r-sm);color:#fff}
+#ham{display:none;flex-direction:column;gap:5px;padding:6px;cursor:pointer}
+#ham span{display:block;width:22px;height:1.5px;background:var(--text);transition:transform .3s,opacity .3s,background .3s}
+#ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);background:var(--red2)}
+#ham.open span:nth-child(2){opacity:0}
+#ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);background:var(--red2)}
+@media(max-width:820px){
+  #ham{display:flex}
+  .nav-menu{display:none;position:absolute;top:calc(100% + 1px);left:-4%;right:-4%;flex-direction:column;gap:0;align-items:stretch;background:rgba(6,0,10,.97);backdrop-filter:blur(24px);border:1px solid var(--border);border-top:none;padding:8px 0}
+  .nav-menu.open{display:flex}
+  .nav-link{padding:14px 24px;font-size:.68rem}
+  .nav-link::after{display:none}
+  .nav-cta{clip-path:none;text-align:center;padding:14px 24px;display:block;background:none;color:var(--red2)}
+}
+.wrap{position:relative;z-index:2}
+.container{width:min(1180px,92%);margin:0 auto}
+
+/* PAGE HERO */
+.page-hero{padding:clamp(130px,18vw,200px) 0 clamp(50px,7vw,80px);position:relative;overflow:hidden}
+.page-hero-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--ff-d);font-weight:800;font-size:clamp(5rem,20vw,18rem);color:transparent;-webkit-text-stroke:1px rgba(195,15,45,.04);letter-spacing:-.04em;white-space:nowrap;pointer-events:none;user-select:none}
+.page-eyebrow{font-family:var(--ff-m);font-size:.6rem;color:var(--red2);letter-spacing:.25em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.page-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:linear-gradient(90deg,var(--red2),transparent)}
+.page-title{font-family:var(--ff-d);font-weight:800;font-size:clamp(3rem,8vw,7rem);color:var(--white);line-height:.88;letter-spacing:-.04em;margin-bottom:20px}
+.page-title em{font-style:normal;color:var(--red2)}
+.page-desc{font-size:1rem;line-height:1.75;max-width:560px;color:var(--text)}
+
+/* FILTER */
+.filter-bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:clamp(30px,5vw,50px)}
+.search-wrap{position:relative;flex:1;min-width:240px}
+.search-input{width:100%;padding:12px 16px 12px 44px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:var(--ff-b);font-size:.9rem;transition:border-color .2s,box-shadow .2s}
+.search-input:focus{outline:none;border-color:var(--border-hot);box-shadow:0 0 0 3px rgba(195,15,45,.08)}
+.search-input::placeholder{color:var(--muted)}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:.85rem;color:var(--muted);pointer-events:none}
+.filter-chips{display:flex;gap:8px;flex-wrap:wrap}
+.fchip{font-family:var(--ff-m);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:99px;color:var(--muted);background:var(--card);transition:border-color .2s,color .2s,background .2s;cursor:pointer}
+.fchip:hover{border-color:var(--border-hot);color:var(--white)}
+.fchip.active{border-color:var(--red2);color:var(--white);background:rgba(195,15,45,.1)}
+@media(pointer:coarse){.fchip{cursor:pointer}}
+.results-line{font-family:var(--ff-m);font-size:.58rem;color:var(--muted);letter-spacing:.1em;margin-bottom:22px}
+.results-line span{color:var(--red2)}
+
+/* TIMELINE LAYOUT */
+.timeline{position:relative;padding-left:clamp(24px,4vw,48px)}
+.timeline::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:1px;background:linear-gradient(to bottom,transparent,var(--border) 8%,var(--border) 92%,transparent);
+}
+
+/* DATE GROUP */
+.date-group{margin-bottom:clamp(50px,7vw,80px)}
+.date-group.hidden{display:none}
+.date-label{
+  position:relative;margin-bottom:28px;
+}
+.date-label::before{
+  content:'';position:absolute;left:clamp(-32px,-5vw,-54px);top:50%;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--red);border:2px solid var(--bg);
+  box-shadow:0 0 12px var(--red);
+  transform:translateY(-50%);
+}
+.date-label-inner{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--ff-m);font-size:.65rem;color:var(--gold);
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:6px 14px;background:rgba(201,160,55,.07);
+  border:1px solid var(--border-gold);border-radius:99px;
+}
+
+/* UPDATE CARDS */
+.update-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;margin-bottom:18px;
+  transition:border-color .3s,box-shadow .3s,transform .3s var(--ease));
+}
+.update-card:hover{border-color:var(--border-hot);box-shadow:var(--glow-r);transform:translateY(-3px)}
+.update-card.hidden{display:none}
+
+.update-inner{
+  display:grid;grid-template-columns:auto 1fr;gap:0;
+}
+@media(max-width:640px){.update-inner{grid-template-columns:1fr}}
+
+.update-thumb{
+  width:240px;flex-shrink:0;overflow:hidden;background:var(--surface);
+  position:relative;
+}
+@media(max-width:640px){.update-thumb{width:100%;height:180px}}
+.update-thumb img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.6) brightness(.75);
+  transition:filter .4s,transform .4s var(--ease));
+}
+.update-card:hover .update-thumb img{filter:saturate(1) brightness(1);transform:scale(1.05)}
+.update-thumb-ph{
+  width:100%;height:100%;min-height:160px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3.5rem;
+}
+.update-type-badge{
+  position:absolute;top:10px;left:10px;
+  font-family:var(--ff-m);font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 9px;border-radius:4px;background:rgba(6,0,10,.8);backdrop-filter:blur(6px);
+}
+.type-dev{color:var(--red2);border:1px solid rgba(195,15,45,.3)}
+.type-life{color:var(--gold);border:1px solid var(--border-gold)}
+.type-stream{color:#9b59b6;border:1px solid rgba(155,89,182,.3)}
+.type-achievement{color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
+
+.update-body{padding:clamp(18px,2.5vw,26px)}
+.update-meta{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:12px;flex-wrap:wrap;
+}
+.update-time{
+  font-family:var(--ff-m);font-size:.52rem;color:var(--muted);
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.update-mood{
+  font-size:.75rem;
+}
+.update-title{
+  font-family:var(--ff-d);font-weight:700;
+  font-size:clamp(1.2rem,2.5vw,1.55rem);color:var(--white);
+  line-height:1.05;letter-spacing:-.02em;margin-bottom:12px;
+}
+.update-text{font-size:.88rem;line-height:1.72;color:var(--text);margin-bottom:16px}
+.update-tags{display:flex;flex-wrap:wrap;gap:6px}
+.u-tag{
+  font-family:var(--ff-m);font-size:.5rem;color:var(--muted);
+  letter-spacing:.06em;padding:3px 9px;border:1px solid var(--border);
+  border-radius:2px;
+}
+
+/* EMPTY */
+.empty-state{padding:80px 20px;text-align:center}
+.empty-state .icon{font-size:3rem;margin-bottom:16px;opacity:.3}
+.empty-state h3{font-family:var(--ff-d);font-size:1.5rem;color:var(--muted);font-weight:700;letter-spacing:-.02em}
+.empty-state p{font-family:var(--ff-m);font-size:.62rem;color:var(--muted);letter-spacing:.1em;margin-top:8px}
+
+footer{border-top:1px solid var(--border);padding:clamp(36px,5vw,55px) 0;margin-top:clamp(80px,10vw,130px)}
+.foot-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.foot-brand{font-family:var(--ff-d);font-weight:800;font-size:1.2rem;letter-spacing:-.02em;background:linear-gradient(90deg,var(--white),var(--red2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.foot-links{display:flex;gap:22px}
+.foot-links a{font-family:var(--ff-m);font-size:.58rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.foot-links a:hover{color:var(--white)}
+.foot-copy{font-family:var(--ff-m);font-size:.55rem;color:var(--muted)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:translateY(0)}
+#btt{position:fixed;bottom:28px;right:24px;z-index:800;width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--border-hot);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--red2);cursor:pointer;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,box-shadow .2s;pointer-events:none}
+#btt.show{opacity:1;transform:translateY(0);pointer-events:auto}
+#btt:hover{box-shadow:var(--glow-r-sm);color:var(--white)}
+</style>
 </head>
 <body>
-  <nav><!-- Paste main nav from index.html --></nav>
-  <div class="container">
-    <h1 class="sec-title">Daily Updates <em>News &amp; Events</em></h1>
-    <div class="updates-grid" id="updatesList"></div>
+<div id="progress" aria-hidden="true"></div>
+<div id="cur" aria-hidden="true"></div>
+<div id="cur-ring" aria-hidden="true"></div>
+<div class="ambient" aria-hidden="true"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+<button id="btt" aria-label="Back to top">↑</button>
+
+<div class="wrap">
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="KarasuBerry home">
+      <span class="logo-main">KarasuBerry</span>
+      <span class="logo-sub">aayan parmar · dev &amp; creator</span>
+    </a>
+    <ul class="nav-menu" id="navMenu" role="list">
+      <li><a href="index.html#about" class="nav-link">About</a></li>
+      <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+      <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+      <li><a href="index.html#explore" class="nav-link">Explore</a></li>
+      <li><a href="studyarea.html" class="nav-link">StudyArea</a></li>
+      <li><a href="dailyupdates.html" class="nav-link active">Daily</a></li>
+      <li><a href="announcements.html" class="nav-link">News</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button id="ham" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <script type="module">
-    import { apiCall } from './api.js';
-    async function loadUpdates() {
-      try {
-        const res = await apiCall('/updates');
-        const list = document.getElementById('updatesList');
-        list.innerHTML = res.map(u => `
-          <div class="update-card">
-            <h3>${u.title}</h3>
-            <p>${u.content}</p>
-            <small>${new Date(u.created_at).toLocaleDateString()}</small>
+</nav>
+
+<section class="page-hero" aria-label="Daily Updates header">
+  <div class="page-hero-bg" aria-hidden="true">LOG</div>
+  <div class="container">
+    <p class="page-eyebrow">Daily Updates</p>
+    <h1 class="page-title">Dev <em>Diary</em></h1>
+    <p class="page-desc">Raw, honest logs from the grind. Dev progress, stream highlights, life moments, and whatever's on my mind. Updated regularly.</p>
+  </div>
+</section>
+
+<main class="container" style="padding-bottom:clamp(80px,10vw,130px)">
+
+  <!-- Filter -->
+  <div class="filter-bar rv">
+    <div class="search-wrap">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input type="search" class="search-input" id="searchInput"
+        placeholder="Search updates…" aria-label="Search daily updates"/>
+    </div>
+    <div class="filter-chips" role="group" aria-label="Filter by type">
+      <button class="fchip active" data-cat="all">All</button>
+      <button class="fchip" data-cat="dev">Dev</button>
+      <button class="fchip" data-cat="life">Life</button>
+      <button class="fchip" data-cat="stream">Stream</button>
+      <button class="fchip" data-cat="achievement">Wins</button>
+    </div>
+  </div>
+
+  <p class="results-line rv" id="resultsLine">Showing <span id="resultCount">7</span> updates</p>
+
+  <!-- Empty state -->
+  <div class="empty-state" id="emptyState" style="display:none">
+    <div class="icon">📭</div>
+    <h3>No updates found</h3>
+    <p>Try a different search or filter</p>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline" id="timeline">
+
+    <!-- March 2026 -->
+    <div class="date-group rv" data-month="march 2026">
+      <div class="date-label rv">
+        <div class="date-label-inner">◈ March 2026</div>
+      </div>
+
+      <article class="update-card rv" data-cat="achievement" data-text="Launched the new KarasuBerry portfolio with premium design">
+        <div class="update-inner">
+          <div class="update-thumb">
+            <div class="update-thumb-ph">🚀</div>
+            <span class="update-type-badge type-achievement">Achievement</span>
           </div>
-        `).join('');
-      } catch (e) {
-        list.innerHTML = '<div class="update-card"><h3>Sample Update</h3><p>Check back soon!</p></div>';
-      }
-    }
-    loadUpdates();
-  </script>
+          <div class="update-body">
+            <div class="update-meta">
+              <span class="update-time">Mar 22, 2026 · 11:45 PM</span>
+              <span class="update-mood" aria-label="Mood: Fire">🔥</span>
+            </div>
+            <h2 class="update-title">New Portfolio LIVE — KarasuBerry v2</h2>
+            <p class="update-text">Finally shipped the redesigned portfolio. Rebuilt everything from scratch — new font system, particle canvas, SEO overhaul, mobile-first layout. Took way longer than expected but the result is clean. If you're reading this, you're on it.</p>
+            <div class="update-tags">
+              <span class="u-tag">Portfolio</span><span class="u-tag">HTML/CSS</span>
+              <span class="u-tag">Design</span><span class="u-tag">SEO</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="update-card rv" data-cat="dev" data-text="Working on StudyArea backend and card filtering system">
+        <div class="update-inner">
+          <div class="update-thumb">
+            <div class="update-thumb-ph">⌨️</div>
+            <span class="update-type-badge type-dev">Dev</span>
+          </div>
+          <div class="update-body">
+            <div class="update-meta">
+              <span class="update-time">Mar 20, 2026 · 2:30 AM</span>
+              <span class="update-mood" aria-label="Mood: Coffee">☕</span>
+            </div>
+            <h2 class="update-title">3AM Coding Session — StudyArea Backend</h2>
+            <p class="update-text">Late night grind. Building out the StudyArea resource system — card filtering, search, download tracking. PHP is annoying me but it works. Considering switching to a JSON-based flat file system for now.</p>
+            <div class="update-tags">
+              <span class="u-tag">PHP</span><span class="u-tag">MySQL</span><span class="u-tag">Backend</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="update-card rv" data-cat="stream" data-text="Hit 100 subscribers on YouTube KarasuBerry">
+        <div class="update-inner">
+          <div class="update-thumb">
+            <div class="update-thumb-ph">🎬</div>
+            <span class="update-type-badge type-stream">Stream</span>
+          </div>
+          <div class="update-body">
+            <div class="update-meta">
+              <span class="update-time">Mar 17, 2026 · 6:00 PM</span>
+              <span class="update-mood" aria-label="Mood: Party">🎉</span>
+            </div>
+            <h2 class="update-title">Hit 100 Subs on YouTube!</h2>
+            <p class="update-text">Small milestone but it means a lot. 100 people actually bothered to click Subscribe on KarasuBerry. Celebrated with a Demon Slayer edit marathon. More content coming — especially AMV edits and dev vlogs.</p>
+            <div class="update-tags">
+              <span class="u-tag">YouTube</span><span class="u-tag">Milestone</span><span class="u-tag">Edits</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="update-card rv" data-cat="dev" data-text="Released Sanemi Edit 4K Demon Slayer short on YouTube">
+        <div class="update-inner">
+          <div class="update-thumb">
+            <img src="https://img.youtube.com/vi/a8lnvzeRmGM/maxresdefault.jpg" alt="Sanemi Edit" loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=update-thumb-ph>🎵</div>'"/>
+            <span class="update-type-badge type-stream">Edit Drop</span>
+          </div>
+          <div class="update-body">
+            <div class="update-meta">
+              <span class="update-time">Mar 05, 2026 · 9:00 PM</span>
+              <span class="update-mood" aria-label="Mood: Sword">⚔️</span>
+            </div>
+            <h2 class="update-title">Sanemi Edit [4K] — Dropped</h2>
+            <p class="update-text">New short is live. Sanemi Shinazugawa edit in 4K — pushed my After Effects skills on this one. Colour grading took forever but I'm happy with how the cuts sync. Go watch it.</p>
+            <div class="update-tags">
+              <span class="u-tag">DemonSlayer</span><span class="u-tag">AMV</span><span class="u-tag">4K</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- February 2026 -->
+    <div class="date-group rv" data-month="february 2026">
+      <div class="date-label rv">
+        <div class="date-label-inner">◈ February 2026</div>
+      </div>
+
+      <article class="update-card rv" data-cat="achievement" data-text="Completed Google Cybersecurity Professional Certificate">
+        <div class="update-inner">
+          <div class="update-thumb">
+            <img src="images/img2.jpeg" alt="Google Cybersecurity cert" loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=update-thumb-ph>🛡️</div>'"/>
+            <span class="update-type-badge type-achievement">Achievement</span>
+          </div>
+          <div class="update-body">
+            <div class="update-meta">
+              <span class="update-time">Feb 28, 2026 · 4:00 PM</span>
+              <span class="update-mood" aria-label="Mood: Lock">🔐</span>
+            </div>
+            <h2 class="update-title">Google Cybersecurity Certificate — Done</h2>
+            <p class="update-text">Finished all 8 courses in the Google Cybersecurity Professional Certificate. Solid foundation in SIEM, network security, Python for automation, and incident response. Notes are going up on StudyArea.</p>
+            <div class="update-tags">
+              <span class="u-tag">Cybersecurity</span><span class="u-tag">Google</span><span class="u-tag">Certificate</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="update-card rv" data-cat="life" data-text="Skill competition gymnastics results">
+        <div class="update-inner">
+          <div class="update-thumb">
+            <img src="images/img3.jpg" alt="Skill Competition" loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=update-thumb-ph>🏆</div>'"/>
+            <span class="update-type-badge type-life">Life</span>
+          </div>
+          <div class="update-body">
+            <div class="update-meta">
+              <span class="update-time">Feb 14, 2026 · 7:30 PM</span>
+              <span class="update-mood" aria-label="Mood: Flex">💪</span>
+            </div>
+            <h2 class="update-title">Skill Competition — Placed Top 3</h2>
+            <p class="update-text">Competed in a skill competition this weekend. Placed top 3 in my category. Gymnastics has been a huge part of keeping me sane during long dev sessions. Code + movement = the combo.</p>
+            <div class="update-tags">
+              <span class="u-tag">Gymnastics</span><span class="u-tag">Competition</span><span class="u-tag">Life</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="update-card rv" data-cat="dev" data-text="Started building Zyro Launcher app development project">
+        <div class="update-inner">
+          <div class="update-thumb">
+            <div class="update-thumb-ph">⚡</div>
+            <span class="update-type-badge type-dev">Dev</span>
+          </div>
+          <div class="update-body">
+            <div class="update-meta">
+              <span class="update-time">Feb 03, 2026 · 11:00 PM</span>
+              <span class="update-mood" aria-label="Mood: Lightning">⚡</span>
+            </div>
+            <h2 class="update-title">Started Building Zyro Launcher</h2>
+            <p class="update-text">New project: a custom app launcher. Wanted something fast, minimal and with personality. Starting with a basic prototype — UI sketched, core architecture planned. This is gonna be fun.</p>
+            <div class="update-tags">
+              <span class="u-tag">App Dev</span><span class="u-tag">Zyro</span><span class="u-tag">Project</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div><!-- /.timeline -->
+</main>
+
+<footer role="contentinfo">
+  <div class="container foot-inner">
+    <div class="foot-brand">KARASUBERRY</div>
+    <ul class="foot-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="studyarea.html">StudyArea</a></li>
+      <li><a href="announcements.html">News</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <p class="foot-copy">© <span id="yr"></span> Aayan Parmar · KarasuBerry</p>
+  </div>
+</footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+document.getElementById('yr').textContent = new Date().getFullYear();
+var prog=document.getElementById('progress');
+window.addEventListener('scroll',function(){var s=window.pageYOffset,t=document.documentElement.scrollHeight-innerHeight;prog.style.width=(t>0?(s/t)*100:0)+'%';},{passive:true});
+var btt=document.getElementById('btt');
+window.addEventListener('scroll',function(){btt.classList.toggle('show',window.pageYOffset>400);},{passive:true});
+btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+if(window.matchMedia('(pointer:fine)').matches){
+  var cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+  var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;},{passive:true});
+  function animC(){cur.style.cssText='left:'+mx+'px;top:'+my+'px;';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.cssText='left:'+rx+'px;top:'+ry+'px;';requestAnimationFrame(animC);}
+  requestAnimationFrame(animC);
+  document.querySelectorAll('a,button,.update-card,.fchip').forEach(function(el){
+    el.addEventListener('mouseenter',function(){document.body.classList.add('hov');});
+    el.addEventListener('mouseleave',function(){document.body.classList.remove('hov');});
+  });
+}
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.pageYOffset>50);},{passive:true});
+nav.classList.toggle('scrolled',window.pageYOffset>50);
+var ham=document.getElementById('ham'),nm=document.getElementById('navMenu');
+ham.addEventListener('click',function(){var o=nm.classList.toggle('open');ham.classList.toggle('open',o);ham.setAttribute('aria-expanded',String(o));});
+nm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nm.classList.remove('open');ham.classList.remove('open');ham.setAttribute('aria-expanded','false');});});
+var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+/* Search & Filter */
+var cards=Array.from(document.querySelectorAll('.update-card'));
+var groups=Array.from(document.querySelectorAll('.date-group'));
+var searchInput=document.getElementById('searchInput');
+var fchips=document.querySelectorAll('.fchip');
+var empty=document.getElementById('emptyState');
+var countEl=document.getElementById('resultCount');
+var activeCat='all';
+
+function applyFilter(){
+  var q=searchInput.value.toLowerCase().trim();
+  var visible=0;
+  cards.forEach(function(c){
+    var cat=c.dataset.cat;
+    var text=(c.dataset.text+' '+c.querySelector('.update-title').textContent+' '+c.querySelector('.update-text').textContent).toLowerCase();
+    var catOk=(activeCat==='all'||cat===activeCat);
+    var searchOk=(!q||text.includes(q));
+    var show=catOk&&searchOk;
+    c.classList.toggle('hidden',!show);
+    if(show) visible++;
+  });
+  /* hide empty groups */
+  groups.forEach(function(g){
+    var anyVisible=Array.from(g.querySelectorAll('.update-card:not(.hidden)')).length>0;
+    g.classList.toggle('hidden',!anyVisible);
+  });
+  countEl.textContent=visible;
+  empty.style.display=visible===0?'block':'none';
+}
+fchips.forEach(function(chip){
+  chip.addEventListener('click',function(){
+    fchips.forEach(function(c){c.classList.remove('active');});
+    chip.classList.add('active');
+    activeCat=chip.dataset.cat;
+    applyFilter();
+  });
+});
+searchInput.addEventListener('input',applyFilter);
+})();
+</script>
 </body>
 </html>
