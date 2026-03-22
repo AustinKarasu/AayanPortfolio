@@ -5,26 +5,26 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta name="theme-color" content="#06000a"/>
 <meta name="color-scheme" content="dark"/>
- 
+
 <!-- SEO Meta -->
 <title>KarasuBerry · Aayan Parmar — Developer, Editor, Designer & Streamer</title>
 <meta name="description" content="KarasuBerry (Aayan Parmar) — Full-stack developer, video editor, UI designer and streamer from India. Building sleek digital experiences with code, creativity and craft."/>
 <meta name="keywords" content="KarasuBerry, Aayan Parmar, web developer, video editor, designer, streamer, PHP, MySQL, Linux, React, portfolio"/>
 <meta name="author" content="Aayan Parmar"/>
 <meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://aayankarasu.fun/"/>
- 
+<link rel="canonical" href="https://karasuberry.fun/"/>
+
 <!-- Open Graph -->
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://aayankarasu.fun/"/>
+<meta property="og:url" content="https://karasuberry.fun/"/>
 <meta property="og:title" content="KarasuBerry · Aayan Parmar — Developer, Editor, Designer & Streamer"/>
 <meta property="og:description" content="Building sleek digital experiences with code, creativity and craft. Developer · Editor · Designer · Streamer."/>
-<meta property="og:image" content="https://aayankarasu.fun/images/og-card.png"/>
+<meta property="og:image" content="https://karasuberry.fun/images/og-card.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:site_name" content="AayanKarasu"/>
+<meta property="og:site_name" content="KarasuBerry"/>
 <meta property="og:locale" content="en_IN"/>
- 
+
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:site" content="@KarasuBerry"/>
@@ -32,7 +32,7 @@
 <meta name="twitter:title" content="KarasuBerry · Aayan Parmar"/>
 <meta name="twitter:description" content="Developer, Editor, Designer & Streamer. Building things that feel alive."/>
 <meta name="twitter:image" content="https://karasuberry.fun/images/og-card.png"/>
- 
+
 <!-- Structured Data -->
 <script type="application/ld+json">
 {
@@ -54,12 +54,12 @@
   ]
 }
 </script>
- 
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet"/>
- 
+
 <style>
 /* ═══════════════════════════════════════
    TOKENS & RESET
@@ -101,7 +101,7 @@ ul{list-style:none}
 ::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
 ::selection{background:rgba(195,15,45,0.3);color:var(--white)}
 :focus-visible{outline:1px solid var(--red);outline-offset:3px;border-radius:2px}
- 
+
 /* ═══════════════════════════════════════
    SCROLL PROGRESS
 ═══════════════════════════════════════ */
@@ -111,7 +111,7 @@ ul{list-style:none}
   z-index:9000;transition:width .1s linear;
   box-shadow:0 0 8px rgba(195,15,45,0.6);
 }
- 
+
 /* ═══════════════════════════════════════
    CURSOR
 ═══════════════════════════════════════ */
@@ -136,7 +136,7 @@ body.c-hov #cur-ring{width:48px;height:48px;border-color:rgba(201,160,55,0.55);b
 body.c-hov #cur{transform:translate(-50%,-50%) scale(0);opacity:0}
 body.c-click #cur{transform:translate(-50%,-50%) scale(2.5)}
 body.c-click #cur-ring{width:22px;height:22px}
- 
+
 /* ═══════════════════════════════════════
    AMBIENT BACKGROUND
 ═══════════════════════════════════════ */
@@ -155,7 +155,7 @@ body.c-click #cur-ring{width:22px;height:22px}
   background:radial-gradient(circle,rgba(180,120,30,0.07),transparent 65%);
   animation-duration:17s;animation-delay:-7s}
 @keyframes orbFloat{0%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,20px) scale(1.04)}100%{transform:translate(60px,45px) scale(.97)}}
- 
+
 /* Grid overlay */
 .ambient::before{
   content:'';position:absolute;inset:0;
@@ -172,12 +172,12 @@ body.c-click #cur-ring{width:22px;height:22px}
   background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   opacity:.4;pointer-events:none;
 }
- 
+
 /* ═══════════════════════════════════════
    NOISE TEXTURE CANVAS
 ═══════════════════════════════════════ */
 #noise{position:fixed;inset:0;z-index:1;opacity:.025;pointer-events:none;mix-blend-mode:overlay}
- 
+
 /* ═══════════════════════════════════════
    BOOT SCREEN
 ═══════════════════════════════════════ */
@@ -213,14 +213,14 @@ body.c-click #cur-ring{width:22px;height:22px}
   100%{opacity:1;transform:scale(1)}
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
- 
+
 .boot-log{
   font-family:var(--ff-mono);font-size:clamp(.58rem,.85vw,.7rem);
   color:#333;width:min(340px,88%);
 }
 .boot-log span{display:block;margin:3px 0;opacity:0;animation:bline .3s forwards}
 .boot-log .g{color:#1e6e30}.boot-log .r{color:var(--red)}
- 
+
 .boot-progress{width:min(340px,88%);height:1px;background:#111;overflow:hidden}
 .boot-progress-inner{
   height:100%;width:0;
@@ -230,7 +230,7 @@ body.c-click #cur-ring{width:22px;height:22px}
 }
 @keyframes bline{to{opacity:1}}
 @keyframes bprog{to{width:100%}}
- 
+
 /* ═══════════════════════════════════════
    BACK-TO-TOP
 ═══════════════════════════════════════ */
@@ -247,7 +247,7 @@ body.c-click #cur-ring{width:22px;height:22px}
 #btt.show{opacity:1;transform:translateY(0);pointer-events:auto}
 #btt:hover{box-shadow:var(--glow-r-sm);color:var(--white)}
 @media(pointer:coarse){#btt{cursor:pointer}}
- 
+
 /* ═══════════════════════════════════════
    NAV
 ═══════════════════════════════════════ */
@@ -300,7 +300,7 @@ body.c-click #cur-ring{width:22px;height:22px}
 }
 .nav-link:hover,.nav-link.active{color:var(--white)}
 .nav-link:hover::after,.nav-link.active::after{width:100%}
- 
+
 .nav-cta{
   font-family:var(--ff-mono);font-size:.62rem;
   letter-spacing:.1em;text-transform:uppercase;
@@ -310,16 +310,8 @@ body.c-click #cur-ring{width:22px;height:22px}
   transition:background .2s,box-shadow .2s,transform .2s;
 }
 .nav-cta:hover{background:var(--red2);box-shadow:var(--glow-r-sm);transform:translateY(-1px);color:#fff}
- 
-.nav-login{
-  font-family:var(--ff-mono);font-size:.62rem;
-  letter-spacing:.1em;text-transform:uppercase;
-  padding:8px 18px;color:var(--gold);
-  border:1px solid var(--border-gold);border-radius:var(--r4);
-  transition:border-color .3s,box-shadow .2s,color .2s;
-}
-.nav-login:hover{border-color:var(--gold);box-shadow:var(--glow-g);color:var(--white)}
- 
+
+
 #ham{
   display:none;flex-direction:column;gap:5px;
   padding:6px;cursor:pointer;
@@ -333,7 +325,7 @@ body.c-click #cur-ring{width:22px;height:22px}
 #ham.open span:nth-child(2){opacity:0}
 #ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);background:var(--red2)}
 @media(pointer:coarse){#ham{cursor:pointer}}
- 
+
 @media(max-width:820px){
   #ham{display:flex}
   .nav-menu{
@@ -348,15 +340,14 @@ body.c-click #cur-ring{width:22px;height:22px}
   .nav-menu.open{display:flex}
   .nav-link{padding:14px 24px;font-size:.68rem}
   .nav-link::after{display:none}
-  .nav-cta,.nav-login{
+  .nav-cta{
     clip-path:none;border-radius:0;
     text-align:center;padding:14px 24px;
-    display:block;
+    display:block;background:none;color:var(--red2);
+    border-bottom:1px solid var(--border);
   }
-  .nav-cta{background:none;color:var(--red2);border-bottom:1px solid var(--border)}
-  .nav-login{border:none;color:var(--gold);border-radius:0}
 }
- 
+
 /* ═══════════════════════════════════════
    LAYOUT UTILITIES
 ═══════════════════════════════════════ */
@@ -385,7 +376,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   background:linear-gradient(90deg,transparent 0%,var(--border) 20%,var(--border) 80%,transparent 100%);
   margin:0;width:min(1180px,92%);margin:0 auto;
 }
- 
+
 /* ═══════════════════════════════════════
    REVEAL ANIMATIONS
 ═══════════════════════════════════════ */
@@ -394,7 +385,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
 .rv-l{transform:translate(-32px,0)}.rv-l.in{transform:translate(0,0)}
 .rv-r{transform:translate(32px,0)}.rv-r.in{transform:translate(0,0)}
 .rv-scale{transform:scale(.94)}.rv-scale.in{transform:scale(1)}
- 
+
 /* ═══════════════════════════════════════
    HERO
 ═══════════════════════════════════════ */
@@ -405,7 +396,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   padding-bottom:clamp(80px,10vw,120px);
   overflow:hidden;
 }
- 
+
 /* Animated hero bg text */
 .hero-bg-text{
   position:absolute;top:50%;left:50%;
@@ -419,17 +410,17 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   animation:bgDrift 20s ease-in-out infinite alternate;
 }
 @keyframes bgDrift{0%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-51%) scale(1.02)}}
- 
+
 /* Canvas particle */
 #particles{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.6}
- 
+
 .hero-layout{
   display:grid;grid-template-columns:1fr auto;
   gap:clamp(40px,6vw,80px);align-items:center;
   position:relative;z-index:1;width:100%;
 }
 @media(max-width:820px){.hero-layout{grid-template-columns:1fr}}
- 
+
 .hero-pill{
   display:inline-flex;align-items:center;gap:8px;
   font-family:var(--ff-mono);font-size:.58rem;
@@ -446,7 +437,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   animation:blink 1.8s ease-in-out infinite;
 }
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
- 
+
 .hero-name{
   font-family:var(--ff-display);font-weight:800;
   font-size:clamp(4.5rem,12vw,10.5rem);
@@ -461,7 +452,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   transition:color .3s,-webkit-text-stroke .3s;
 }
 .hero-name .line2:hover{color:var(--red2);-webkit-text-stroke:0px transparent}
- 
+
 .hero-roles{
   display:flex;flex-wrap:wrap;gap:8px;
   margin:22px 0;
@@ -475,16 +466,16 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   transition:border-color .3s,color .3s,background .3s;
 }
 .role-chip:hover{border-color:var(--border-gold);color:var(--gold);background:rgba(201,160,55,.06)}
- 
+
 .hero-bio{
   font-size:1.05rem;line-height:1.75;
   max-width:480px;margin-bottom:36px;
   color:var(--text);
 }
 .hero-bio strong{color:var(--white)}
- 
+
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
- 
+
 /* Buttons */
 .btn{
   display:inline-flex;align-items:center;gap:8px;
@@ -506,7 +497,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
 }
 .btn-outline:hover{background:rgba(201,160,55,.08);box-shadow:var(--glow-g);transform:translateY(-3px);border-color:var(--gold)}
 .btn-icon{font-size:.85rem;line-height:1}
- 
+
 .hero-scroll-hint{
   margin-top:44px;
   display:flex;align-items:center;gap:10px;
@@ -514,7 +505,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   color:var(--muted);letter-spacing:.18em;text-transform:uppercase;
 }
 .scroll-line{width:48px;height:1px;background:linear-gradient(90deg,var(--muted),transparent)}
- 
+
 /* Hero visual */
 .hero-visual{
   display:flex;flex-direction:column;align-items:center;gap:20px;
@@ -561,7 +552,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
 }
 .h-orbit{inset:-55px}.h-orbit-2{inset:-78px}
 @keyframes spin{to{transform:rotate(360deg)}}
- 
+
 .hero-pills{
   display:flex;flex-direction:column;gap:10px;
   margin-top:12px;
@@ -582,7 +573,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   color:var(--muted);letter-spacing:.1em;
   text-transform:uppercase;margin-top:4px;
 }
- 
+
 /* ═══════════════════════════════════════
    TICKER
 ═══════════════════════════════════════ */
@@ -605,7 +596,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
 }
 .t-item::before{content:'◈';color:var(--red);font-size:.5rem}
 @keyframes tickScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
- 
+
 /* ═══════════════════════════════════════
    ABOUT
 ═══════════════════════════════════════ */
@@ -614,7 +605,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   gap:clamp(50px,7vw,90px);align-items:center;
 }
 @media(max-width:820px){.about-grid{grid-template-columns:1fr}}
- 
+
 .about-card-shell{
   perspective:1000px;
   width:clamp(260px,28vw,330px);margin:0 auto;
@@ -675,7 +666,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   color:var(--muted);letter-spacing:.06em;text-transform:uppercase;
   padding:3px 8px;border:1px solid var(--border);border-radius:2px;
 }
- 
+
 .about-body p{font-size:.97rem;line-height:1.8;margin-bottom:18px}
 .about-body strong{color:var(--white)}
 .highlight-red{color:var(--red2);font-weight:600}
@@ -688,7 +679,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   transition:background .2s,border-color .2s,color .2s,box-shadow .2s;
 }
 .a-chip:hover{background:rgba(201,160,55,.1);border-color:var(--gold);box-shadow:0 0 14px rgba(201,160,55,.15)}
- 
+
 /* ═══════════════════════════════════════
    SKILLS
 ═══════════════════════════════════════ */
@@ -697,10 +688,10 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   gap:clamp(50px,7vw,90px);align-items:start;
 }
 @media(max-width:820px){.skills-layout{grid-template-columns:1fr}}
- 
+
 .skills-text p{font-size:.97rem;line-height:1.8;margin-bottom:18px}
 .skills-text strong{color:var(--white)}
- 
+
 .skill-grid{display:flex;flex-direction:column;gap:24px}
 .skill-item{
   padding:20px;background:var(--card);
@@ -724,7 +715,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
 }
 .skill-track{height:2px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden}
 .skill-bar{height:100%;width:0;border-radius:2px;background:linear-gradient(90deg,var(--red),var(--gold));transition:width 1.1s var(--ease)}
- 
+
 .skill-tools{
   display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;
 }
@@ -733,7 +724,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   color:var(--muted);letter-spacing:.05em;
   padding:2px 7px;border:1px solid var(--border);border-radius:2px;
 }
- 
+
 /* ═══════════════════════════════════════
    PROJECTS
 ═══════════════════════════════════════ */
@@ -750,7 +741,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
 }
 @media(pointer:coarse){.proj-card{cursor:pointer}}
 .proj-card:hover{border-color:var(--border-hot);box-shadow:var(--glow-r);transform:translateY(-6px)}
- 
+
 .proj-thumb{
   height:220px;overflow:hidden;background:var(--surface);
   position:relative;
@@ -772,7 +763,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   color:var(--muted);letter-spacing:.1em;
   background:rgba(6,0,10,.7);padding:4px 8px;border-radius:2px;
 }
- 
+
 .proj-body{padding:clamp(18px,2.5vw,24px)}
 .proj-type{
   font-family:var(--ff-mono);font-size:.56rem;
@@ -802,7 +793,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   color:var(--muted);padding:3px 7px;
   border:1px solid var(--border);border-radius:2px;
 }
- 
+
 /* ═══════════════════════════════════════
    VIDEO / EDITS
 ═══════════════════════════════════════ */
@@ -818,7 +809,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
 }
 @media(pointer:coarse){.vid-card{cursor:pointer}}
 .vid-card:hover{border-color:var(--border-hot);box-shadow:var(--glow-r);transform:translateY(-5px)}
- 
+
 .vid-thumb{
   position:relative;height:188px;overflow:hidden;background:var(--surface);
 }
@@ -842,7 +833,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   box-shadow:0 0 30px rgba(195,15,45,.5);
 }
 .vid-card:hover .play-circle{transform:scale(1.15);background:var(--red2)}
- 
+
 .vid-body{padding:clamp(14px,2vw,20px)}
 .vid-date{
   font-family:var(--ff-mono);font-size:.52rem;
@@ -858,7 +849,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   font-family:var(--ff-mono);font-size:.54rem;
   color:var(--gold);letter-spacing:.08em;
 }
- 
+
 /* ═══════════════════════════════════════
    GALLERY
 ═══════════════════════════════════════ */
@@ -892,7 +883,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   font-family:var(--ff-mono);font-size:.58rem;
   color:var(--white);letter-spacing:.08em;text-transform:uppercase;
 }
- 
+
 /* ═══════════════════════════════════════
    CONTACT
 ═══════════════════════════════════════ */
@@ -901,9 +892,9 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   gap:clamp(50px,7vw,80px);margin-top:44px;
 }
 @media(max-width:820px){.contact-layout{grid-template-columns:1fr}}
- 
+
 .contact-lead{font-size:1rem;line-height:1.8;margin-bottom:30px}
- 
+
 .stats-wrap{
   display:grid;grid-template-columns:1fr 1fr;gap:12px;
 }
@@ -922,7 +913,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
   font-family:var(--ff-mono);font-size:.52rem;
   color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:5px;
 }
- 
+
 .socials-label{
   font-family:var(--ff-mono);font-size:.58rem;
   color:var(--muted);letter-spacing:.18em;text-transform:uppercase;
@@ -947,7 +938,7 @@ section{padding:clamp(80px,11vw,140px) 0;contain:layout style}
 }
 .soc-wide{grid-column:span 3}
 .soc-wide .soc-card{flex-direction:row;gap:12px;padding:14px 20px;justify-content:center}
- 
+
 /* ═══════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════ */
@@ -981,83 +972,9 @@ footer{
   color:var(--muted);letter-spacing:.07em;
 }
 .foot-copy span{color:var(--red2)}
- 
-/* ═══════════════════════════════════════
-   AUTH MODAL
-═══════════════════════════════════════ */
-#auth-modal{
-  position:fixed;inset:0;z-index:9999;
-  background:rgba(6,0,10,.94);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  display:none;align-items:center;justify-content:center;padding:20px;
-}
-#auth-modal.open{display:flex}
-.modal-box{
-  background:var(--card2);border:1px solid var(--border-hot);
-  border-radius:var(--r16);padding:clamp(24px,4vw,36px);
-  max-width:440px;width:100%;position:relative;
-  animation:modalPop .4s var(--ease);
-}
-@keyframes modalPop{from{opacity:0;transform:scale(.94) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal-close{
-  position:absolute;top:14px;right:14px;
-  width:30px;height:30px;border-radius:50%;
-  background:rgba(255,255,255,.05);
-  color:var(--muted);font-size:1.1rem;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:background .2s,color .2s;
-}
-.modal-close:hover{background:rgba(195,15,45,.2);color:var(--red2)}
-.modal-title{
-  font-family:var(--ff-display);font-weight:800;
-  font-size:1.8rem;color:var(--white);
-  letter-spacing:-.02em;margin-bottom:4px;
-}
-.modal-sub{
-  font-family:var(--ff-mono);font-size:.58rem;
-  color:var(--muted);letter-spacing:.1em;margin-bottom:24px;
-}
-.auth-tabs{
-  display:flex;gap:0;margin-bottom:24px;
-  border-bottom:1px solid var(--border);
-}
-.auth-tab{
-  padding:10px 20px;
-  font-family:var(--ff-mono);font-size:.64rem;
-  color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
-  border-bottom:2px solid transparent;
-  transition:color .3s,border-color .3s;cursor:pointer;
-  background:none;margin-bottom:-1px;
-}
-.auth-tab.active{color:var(--red2);border-bottom-color:var(--red2)}
-.auth-form{display:none}
-.auth-form.active{display:block}
-.field{margin-bottom:18px}
-.field label{
-  display:block;font-family:var(--ff-mono);font-size:.55rem;
-  color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
-  margin-bottom:7px;
-}
-.field input{
-  width:100%;padding:12px 14px;
-  border:1px solid var(--border);border-radius:var(--r8);
-  background:rgba(255,255,255,.03);
-  color:var(--white);font-family:var(--ff-body);font-size:.9rem;
-  transition:border-color .2s,box-shadow .2s;
-}
-.field input:focus{outline:none;border-color:var(--border-hot);box-shadow:0 0 0 3px rgba(195,15,45,.08)}
-.auth-submit{
-  width:100%;padding:13px;border-radius:var(--r8);
-  background:var(--red);color:#fff;
-  font-family:var(--ff-mono);font-size:.7rem;
-  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
-  transition:background .2s,box-shadow .2s,transform .15s;margin-top:6px;
-}
-.auth-submit:hover:not(:disabled){background:var(--red2);box-shadow:var(--glow-r)}
-.auth-submit:disabled{background:var(--muted);opacity:.6;cursor:not-allowed}
-.auth-submit:active:not(:disabled){transform:scale(.98)}
-@media(pointer:coarse){.auth-submit{cursor:pointer}}
- 
+
+
+
 /* ═══════════════════════════════════════
    RESPONSIVE TWEAKS
 ═══════════════════════════════════════ */
@@ -1072,7 +989,7 @@ footer{
   .hero-actions{flex-direction:column}
   .btn{justify-content:center}
 }
- 
+
 /* ═══════════════════════════════════════
    PRINT
 ═══════════════════════════════════════ */
@@ -1084,14 +1001,14 @@ footer{
 </style>
 </head>
 <body>
- 
+
 <!-- Progress bar -->
 <div id="progress" role="progressbar" aria-hidden="true"></div>
- 
+
 <!-- Custom cursor -->
 <div id="cur" aria-hidden="true"></div>
 <div id="cur-ring" aria-hidden="true"></div>
- 
+
 <!-- Ambient -->
 <div class="ambient" aria-hidden="true">
   <div class="orb orb-1"></div>
@@ -1099,7 +1016,7 @@ footer{
   <div class="orb orb-3"></div>
 </div>
 <canvas id="noise" aria-hidden="true"></canvas>
- 
+
 <!-- Boot Screen -->
 <div id="boot" aria-label="Loading KarasuBerry" role="status">
   <div class="boot-mark">
@@ -1115,13 +1032,13 @@ footer{
   </div>
   <div class="boot-progress"><div class="boot-progress-inner"></div></div>
 </div>
- 
+
 <!-- Back to top -->
 <button id="btt" aria-label="Back to top">↑</button>
- 
+
 <!-- MAIN WRAPPER -->
 <div class="wrap">
- 
+
 <!-- ── NAV ─────────────────────────────── -->
 <nav id="nav" aria-label="Main navigation">
   <div class="container nav-inner">
@@ -1138,98 +1055,42 @@ footer{
       <li><a href="dailyupdates.html" class="nav-link">Daily</a></li>
       <li><a href="announcements.html" class="nav-link">News</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
-      <li><a href="#" class="nav-login" id="loginBtn">Login</a></li>
     </ul>
     <button id="ham" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
- 
-<!-- ── AUTH MODAL ─────────────────────── -->
-<div id="auth-modal" role="dialog" aria-modal="true" aria-label="Authentication">
-  <div class="modal-box">
-    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
-    <div class="modal-title">Welcome Back</div>
-    <div class="modal-sub">// KARASU PORTAL · SECURE ACCESS</div>
-    <div class="auth-tabs">
-      <button class="auth-tab active" onclick="switchTab(this,'login')">Login</button>
-      <button class="auth-tab" onclick="switchTab(this,'register')">Register</button>
-    </div>
- 
-    <!-- Login Form -->
-    <form class="auth-form active" id="login-form" novalidate>
-      <div class="field">
-        <label for="l-phone">Phone</label>
-        <input type="tel" id="l-phone" placeholder="+91 XXXXX XXXXX" autocomplete="tel" required/>
-      </div>
-      <div class="field">
-        <label for="l-pass">Password</label>
-        <input type="password" id="l-pass" autocomplete="current-password" required/>
-      </div>
-      <div class="field">
-        <label for="l-totp">2FA Code (optional)</label>
-        <input type="text" id="l-totp" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric" maxlength="6"/>
-      </div>
-      <button type="submit" class="auth-submit">Login</button>
-    </form>
- 
-    <!-- Register Form -->
-    <form class="auth-form" id="register-form" novalidate>
-      <div class="field">
-        <label for="r-phone">Phone</label>
-        <input type="tel" id="r-phone" placeholder="+91 XXXXX XXXXX" autocomplete="tel" required/>
-      </div>
-      <div class="field">
-        <label for="r-user">Username</label>
-        <input type="text" id="r-user" autocomplete="username" required/>
-      </div>
-      <div class="field">
-        <label for="r-email">Email</label>
-        <input type="email" id="r-email" autocomplete="email" required/>
-      </div>
-      <div class="field">
-        <label for="r-pass">Password</label>
-        <input type="password" id="r-pass" autocomplete="new-password" required/>
-      </div>
-      <button type="button" class="auth-submit" id="sendOtpBtn">Send OTP</button>
-      <div class="field" style="margin-top:14px">
-        <label for="r-otp">OTP Code</label>
-        <input type="text" id="r-otp" placeholder="6-digit OTP" autocomplete="one-time-code" inputmode="numeric" maxlength="6"/>
-      </div>
-      <button type="submit" class="auth-submit" id="regSubmitBtn" disabled>Create Account</button>
-    </form>
-  </div>
-</div>
- 
+
+
 <!-- ── HERO ─────────────────────────────── -->
 <section id="hero" aria-label="Introduction">
   <canvas id="particles" aria-hidden="true"></canvas>
   <div class="hero-bg-text" aria-hidden="true">KARASU</div>
- 
+
   <div class="container">
     <div class="hero-layout">
       <div>
         <div class="hero-pill" aria-label="Status: Available for projects">Available for projects</div>
- 
+
         <h1 class="hero-name" aria-label="Aayan Parmar">
           AAYAN
           <span class="line2">PARMAR</span>
         </h1>
- 
+
         <div class="hero-roles" aria-label="Roles">
           <span class="role-chip">Developer</span>
           <span class="role-chip">Editor</span>
           <span class="role-chip">Designer</span>
           <span class="role-chip">Streamer</span>
         </div>
- 
+
         <p class="hero-bio">
           I'm <strong>KarasuBerry</strong> — building sleek digital experiences,
           crafting cinematic edits, and designing systems that feel alive.
           Fuelled by code, anime, and the relentless pursuit of craft.
         </p>
- 
+
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary">
             <span class="btn-icon">◈</span> View Projects
@@ -1238,13 +1099,13 @@ footer{
             <span class="btn-icon">↗</span> Get in Touch
           </a>
         </div>
- 
+
         <div class="hero-scroll-hint" aria-hidden="true">
           <div class="scroll-line"></div>
           Scroll
         </div>
       </div>
- 
+
       <div class="hero-visual">
         <div class="hero-orb-shell">
           <div class="h-orb" id="heroOrb"></div>
@@ -1264,7 +1125,7 @@ footer{
     </div>
   </div>
 </section>
- 
+
 <!-- ── TICKER ─────────────────────────── -->
 <div class="ticker-bar" aria-hidden="true" role="marquee">
   <div class="ticker-track">
@@ -1290,14 +1151,14 @@ footer{
     <span class="t-item">Open Source</span>
   </div>
 </div>
- 
+
 <!-- ── ABOUT ─────────────────────────── -->
 <section id="about" aria-label="About Aayan Parmar">
   <div class="container">
     <p class="sec-eyebrow rv">01 / About</p>
     <h2 class="sec-title rv">Who I <em>Am</em></h2>
     <div class="about-grid">
- 
+
       <div class="rv rv-l">
         <div class="about-card-shell">
           <div class="about-card" id="aboutCard">
@@ -1330,7 +1191,7 @@ footer{
           </div>
         </div>
       </div>
- 
+
       <div class="about-body rv rv-r">
         <p>
           I'm <strong>Aayan Parmar</strong> — known online as
@@ -1364,9 +1225,9 @@ footer{
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- ── SKILLS ─────────────────────────── -->
 <section id="skills" aria-label="Skills">
   <div class="container">
@@ -1384,7 +1245,7 @@ footer{
           Every skill is a weapon. Every project is a boss fight.
         </p>
       </div>
- 
+
       <div class="skill-grid rv rv-r" id="skillGrid">
         <div class="skill-item" data-w="80">
           <div class="skill-meta">
@@ -1444,16 +1305,16 @@ footer{
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- ── PROJECTS ───────────────────────── -->
 <section id="projects" aria-label="Projects">
   <div class="container">
     <p class="sec-eyebrow rv">03 / Projects</p>
     <h2 class="sec-title rv">Selected <em>Work</em></h2>
     <div class="projects-grid">
- 
+
       <article class="proj-card rv"
         data-url="https://github.com/AustinKarasu/zyrowebsite"
         tabindex="0" role="link" aria-label="College Assignment Portal - View on GitHub">
@@ -1476,7 +1337,7 @@ footer{
           </div>
         </div>
       </article>
- 
+
       <article class="proj-card rv"
         data-url="https://github.com/AustinKarasu/Zyrolauncher"
         tabindex="0" role="link" aria-label="Zyro Launcher - View on GitHub">
@@ -1498,7 +1359,7 @@ footer{
           </div>
         </div>
       </article>
- 
+
       <article class="proj-card rv"
         data-url="https://github.com/AustinKarasu"
         tabindex="0" role="link" aria-label="Minecraft Plugins - View on GitHub">
@@ -1520,20 +1381,20 @@ footer{
           </div>
         </div>
       </article>
- 
+
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- ── EXPLORE ────────────────────────── -->
 <section id="explore" aria-label="Explore content">
   <div class="container">
     <p class="sec-eyebrow rv">04 / Explore</p>
     <h2 class="sec-title rv">Best <em>Edits</em></h2>
     <div class="video-grid">
- 
+
       <article class="vid-card rv"
         data-url="https://www.youtube.com/shorts/a8lnvzeRmGM"
         tabindex="0" role="link" aria-label="Watch Sanemi Edit on YouTube">
@@ -1547,7 +1408,7 @@ footer{
           <span class="vid-tag">#DemonSlayer</span>
         </div>
       </article>
- 
+
       <article class="vid-card rv"
         data-url="https://youtube.com/shorts/7Yxn9HlFR48"
         tabindex="0" role="link" aria-label="Watch Demon Slayer Edit on YouTube">
@@ -1561,7 +1422,7 @@ footer{
           <span class="vid-tag">#DemonSlayer</span>
         </div>
       </article>
- 
+
       <article class="vid-card rv"
         data-url="https://www.youtube.com/shorts/6gDgW3ydnSo"
         tabindex="0" role="link" aria-label="Watch Tamayo Edit on YouTube">
@@ -1575,9 +1436,9 @@ footer{
           <span class="vid-tag">#DemonSlayer</span>
         </div>
       </article>
- 
+
     </div>
- 
+
     <!-- Gallery -->
     <div style="margin-top:clamp(60px,9vw,100px)">
       <p class="sec-eyebrow rv">04b / Gallery</p>
@@ -1600,19 +1461,19 @@ footer{
         </div>
       </div>
     </div>
- 
+
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- ── CONTACT ────────────────────────── -->
 <section id="contact" aria-label="Contact">
   <div class="container">
     <p class="sec-eyebrow rv">05 / Contact</p>
     <h2 class="sec-title rv">Let's <em>Connect</em></h2>
     <div class="contact-layout">
- 
+
       <div class="rv rv-l">
         <p class="contact-lead">
           Open to collaborations, freelance projects, game nights,
@@ -1638,7 +1499,7 @@ footer{
           </div>
         </div>
       </div>
- 
+
       <div class="rv rv-r">
         <p class="socials-label">Find me on</p>
         <div class="socials-grid">
@@ -1673,18 +1534,18 @@ footer{
             <span class="soc-label">WhatsApp</span>
           </a>
           <div class="soc-wide">
-            <a href="mailto:aayan@karasuberry.fun" class="soc-card" aria-label="Email Aayan Parmar">
+            <a href="/cdn-cgi/l/email-protection#1d7c7c647c735d767c6f7c6e687f786f6f64337b6873" class="soc-card" aria-label="Email Aayan Parmar">
               <img src="images/email.webp" alt="" loading="lazy" onerror="this.remove()"/>
-              <span class="soc-label">aayan@karasuberry.fun</span>
+              <span class="soc-label"><span class="__cf_email__" data-cfemail="bedfdfc7dfd0fed5dfccdfcdcbdcdbccccc790d8cbd0">[email&#160;protected]</span></span>
             </a>
           </div>
         </div>
       </div>
- 
+
     </div>
   </div>
 </section>
- 
+
 <!-- ── FOOTER ─────────────────────────── -->
 <footer role="contentinfo">
   <div class="container foot-inner">
@@ -1701,16 +1562,16 @@ footer{
     </p>
   </div>
 </footer>
- 
+
 </div><!-- /.wrap -->
- 
-<script>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
 'use strict';
- 
+
 /* ── YEAR ────────────────────────────── */
 document.getElementById('yr').textContent = new Date().getFullYear();
- 
+
 /* ── NOISE CANVAS ────────────────────── */
 (function(){
   var c = document.getElementById('noise');
@@ -1728,11 +1589,11 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   draw();
   window.addEventListener('resize',draw,{passive:true});
 })();
- 
+
 /* ── BOOT ───────────────────────────── */
 var boot = document.getElementById('boot');
 setTimeout(function(){ boot.classList.add('out'); }, 3600);
- 
+
 /* ── SCROLL PROGRESS ────────────────── */
 var prog = document.getElementById('progress');
 function updateProgress(){
@@ -1741,7 +1602,7 @@ function updateProgress(){
   prog.style.width = (tot > 0 ? (sc/tot)*100 : 0)+'%';
 }
 window.addEventListener('scroll', updateProgress, {passive:true});
- 
+
 /* ── BACK TO TOP ─────────────────────── */
 var btt = document.getElementById('btt');
 window.addEventListener('scroll', function(){
@@ -1750,7 +1611,7 @@ window.addEventListener('scroll', function(){
 btt.addEventListener('click', function(){
   window.scrollTo({top:0,behavior:'smooth'});
 });
- 
+
 /* ── CUSTOM CURSOR ───────────────────── */
 if(window.matchMedia('(pointer:fine)').matches){
   var cur = document.getElementById('cur');
@@ -1775,13 +1636,13 @@ if(window.matchMedia('(pointer:fine)').matches){
     el.addEventListener('mouseleave',function(){ document.body.classList.remove('c-hov'); });
   });
 }
- 
+
 /* ── NAV ────────────────────────────── */
 var nav = document.getElementById('nav');
 function onScroll(){ nav.classList.toggle('scrolled', window.pageYOffset > 50); }
 window.addEventListener('scroll', onScroll, {passive:true});
 onScroll();
- 
+
 /* ── HAMBURGER ──────────────────────── */
 var ham = document.getElementById('ham');
 var navMenu = document.getElementById('navMenu');
@@ -1797,7 +1658,7 @@ navMenu.querySelectorAll('a').forEach(function(a){
     ham.setAttribute('aria-expanded','false');
   });
 });
- 
+
 /* ── REVEAL ─────────────────────────── */
 var io = new IntersectionObserver(function(entries){
   entries.forEach(function(e){
@@ -1811,7 +1672,7 @@ document.querySelectorAll('.rv').forEach(function(el,i,arr){
   if(idx > 0) el.style.transitionDelay = (idx * .09)+'s';
   io.observe(el);
 });
- 
+
 /* ── SKILL BARS ──────────────────────── */
 var skillObs = new IntersectionObserver(function(entries){
   entries.forEach(function(e){
@@ -1827,7 +1688,7 @@ var skillObs = new IntersectionObserver(function(entries){
 },{threshold:.2});
 var sg = document.getElementById('skillGrid');
 if(sg) skillObs.observe(sg);
- 
+
 /* ── CLICKABLE CARDS ─────────────────── */
 document.querySelectorAll('[data-url]').forEach(function(el){
   el.addEventListener('click', function(){ window.open(el.dataset.url,'_blank','noopener,noreferrer'); });
@@ -1835,7 +1696,7 @@ document.querySelectorAll('[data-url]').forEach(function(el){
     if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.open(el.dataset.url,'_blank','noopener,noreferrer'); }
   });
 });
- 
+
 /* ── 3D CARD TILT ────────────────────── */
 if(window.matchMedia('(pointer:fine)').matches){
   var card = document.getElementById('aboutCard');
@@ -1860,7 +1721,7 @@ if(window.matchMedia('(pointer:fine)').matches){
     });
   }
 }
- 
+
 /* ── ORB PARALLAX ────────────────────── */
 if(window.matchMedia('(pointer:fine)').matches){
   var orb = document.getElementById('heroOrb'), oRaf = null;
@@ -1876,7 +1737,7 @@ if(window.matchMedia('(pointer:fine)').matches){
     },{passive:true});
   }
 }
- 
+
 /* ── PARTICLES ───────────────────────── */
 (function(){
   var c = document.getElementById('particles');
@@ -1916,7 +1777,7 @@ if(window.matchMedia('(pointer:fine)').matches){
   }
   frame();
 })();
- 
+
 /* ── ACTIVE NAV SECTION ──────────────── */
 var secObs = new IntersectionObserver(function(entries){
   entries.forEach(function(e){
@@ -1928,95 +1789,8 @@ var secObs = new IntersectionObserver(function(entries){
   });
 },{threshold:.45});
 document.querySelectorAll('section[id]').forEach(function(s){ secObs.observe(s); });
- 
-/* ── AUTH MODAL ──────────────────────── */
-var authModal = document.getElementById('auth-modal');
- 
-function openModal(){
-  authModal.classList.add('open');
-  document.body.style.overflow='hidden';
-  setTimeout(function(){ document.getElementById('l-phone').focus(); }, 300);
-}
-function closeModal(){
-  authModal.classList.remove('open');
-  document.body.style.overflow='';
-}
- 
-window.switchTab = function(btn, tab){
-  document.querySelectorAll('.auth-tab').forEach(function(t){ t.classList.remove('active'); });
-  document.querySelectorAll('.auth-form').forEach(function(f){ f.classList.remove('active'); });
-  btn.classList.add('active');
-  document.getElementById(tab+'-form').classList.add('active');
-};
- 
-document.getElementById('loginBtn').addEventListener('click', function(e){
-  e.preventDefault(); openModal();
-});
-document.getElementById('modalClose').addEventListener('click', closeModal);
-authModal.addEventListener('click', function(e){ if(e.target===authModal) closeModal(); });
-document.addEventListener('keydown', function(e){
-  if(e.key==='Escape' && authModal.classList.contains('open')) closeModal();
-});
- 
-/* Login */
-document.getElementById('login-form').addEventListener('submit', function(e){
-  e.preventDefault();
-  var btn = this.querySelector('.auth-submit');
-  btn.disabled=true; btn.textContent='Logging in…';
-  fetch('/api/auth/login',{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      phone:document.getElementById('l-phone').value,
-      password:document.getElementById('l-pass').value,
-      totp:document.getElementById('l-totp').value
-    })
-  }).then(function(r){return r.json();}).then(function(d){
-    if(d.token){ localStorage.setItem('token',d.token); closeModal(); }
-    else if(d.requires2FA){ alert('Enter your 2FA code.'); }
-    else { alert(d.error||'Login failed.'); }
-  }).catch(function(e){ alert('Network error: '+e); })
-  .finally(function(){ btn.disabled=false; btn.textContent='Login'; });
-});
- 
-/* OTP */
-document.getElementById('sendOtpBtn').addEventListener('click', function(){
-  var btn=this; btn.disabled=true; btn.textContent='Sending…';
-  fetch('/api/auth/register',{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      phone:document.getElementById('r-phone').value,
-      username:document.getElementById('r-user').value,
-      email:document.getElementById('r-email').value,
-      password:document.getElementById('r-pass').value
-    })
-  }).then(function(r){return r.json();}).then(function(d){
-    alert(d.message||'OTP sent!');
-    document.getElementById('regSubmitBtn').disabled=false;
-  }).catch(function(e){ alert('Error: '+e); })
-  .finally(function(){ btn.disabled=false; btn.textContent='Send OTP'; });
-});
- 
-/* Register */
-document.getElementById('register-form').addEventListener('submit', function(e){
-  e.preventDefault();
-  var btn=document.getElementById('regSubmitBtn');
-  btn.disabled=true; btn.textContent='Creating account…';
-  fetch('/api/register',{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      phone:document.getElementById('r-phone').value,
-      otp:document.getElementById('r-otp').value,
-      username:document.getElementById('r-user').value,
-      email:document.getElementById('r-email').value,
-      password:document.getElementById('r-pass').value
-    })
-  }).then(function(r){return r.json();}).then(function(d){
-    if(d.token){ localStorage.setItem('token',d.token); closeModal(); }
-    else { alert(d.error||'Registration failed.'); }
-  }).catch(function(e){ alert('Error: '+e); })
-  .finally(function(){ btn.disabled=false; btn.textContent='Create Account'; });
-});
- 
+
+
 })();
 </script>
 </body>
