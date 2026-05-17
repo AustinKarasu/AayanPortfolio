@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --background: #030303;
+  --foreground: #f5f5f5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    var(--background);
+  background-size: 48px 48px;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: rgba(239, 68, 68, 0.35);
+  color: #ffffff;
+}
+
+.hero-perspective {
+  perspective: 1200px;
+}
+
+.premium-card {
+  transform-style: preserve-3d;
+}
+
+.premium-card:hover {
+  box-shadow: 0 22px 70px rgba(127, 29, 29, 0.2);
+}
+
+.brand-orbit::before,
+.brand-orbit::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border: 1px solid rgba(239, 68, 68, 0.28);
+  border-radius: 999px;
+  animation: orbit-spin 12s linear infinite;
+}
+
+.brand-orbit::after {
+  inset: -24px;
+  border-color: rgba(255, 255, 255, 0.08);
+  animation-duration: 18s;
+  animation-direction: reverse;
+}
+
+.orbit-dot {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #ef4444;
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.9);
+  animation: float-dot 3.8s ease-in-out infinite;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-700 {
+  animation-delay: 0.7s;
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float-dot {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
