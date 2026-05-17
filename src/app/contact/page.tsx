@@ -1,6 +1,7 @@
 import { ContactForm } from "@/components/contact-form";
 import { PageShell } from "@/components/page-shell";
 import { contactLinks, profile } from "@/lib/site-data";
+import { ArrowDownToLine } from "lucide-react";
 
 export const metadata = {
   title: "Contact",
@@ -30,6 +31,10 @@ export default function ContactPage() {
           </div>
           <a href={`mailto:${profile.email}`} className="mt-6 inline-flex rounded-md bg-red-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-red-500">
             Open Email
+          </a>
+          <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="ml-3 mt-6 inline-flex items-center gap-2 rounded-md border border-white/10 px-5 py-3 text-sm font-medium text-white transition hover:border-red-400/50">
+            <ArrowDownToLine size={16} />
+            Resume
           </a>
         </section>
         <ContactForm />

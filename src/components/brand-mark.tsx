@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { profile } from "@/lib/site-data";
 
 type BrandMarkProps = {
   size?: number;
@@ -9,11 +10,11 @@ export function BrandMark({ size = 40, showText = true }: BrandMarkProps) {
   return (
     <span className="flex items-center gap-3">
       <Image
-        src="/logo.svg"
-        alt="Aayan Karasu logo"
+        src={profile.profileImage}
+        alt="Aayan Karasu profile photo"
         width={size}
         height={size}
-        className="rounded-lg border border-red-500/25 shadow-[0_0_28px_rgba(239,68,68,0.2)]"
+        className="aspect-square rounded-full border border-red-500/35 object-cover shadow-[0_0_28px_rgba(239,68,68,0.24)]"
         priority
       />
       {showText ? (

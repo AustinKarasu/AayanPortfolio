@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/page-shell";
 import { MotionDiv, fadeUp, stagger } from "@/components/motion";
-import { experience } from "@/lib/site-data";
+import { experience, profile } from "@/lib/site-data";
+import { ArrowDownToLine } from "lucide-react";
 
 export const metadata = {
   title: "Experience",
@@ -14,6 +15,10 @@ export default function ExperiencePage() {
       title="Experience built through hands-on project work."
       description="The timeline below focuses on the kinds of work I can take on for companies, communities, and freelance clients."
     >
+      <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="mb-8 inline-flex items-center gap-2 rounded-md border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-100 transition hover:border-red-300/60 hover:bg-red-500/15">
+        <ArrowDownToLine size={16} />
+        View Resume
+      </a>
       <MotionDiv variants={stagger} initial="hidden" animate="visible" className="relative space-y-5 before:absolute before:left-4 before:top-2 before:h-full before:w-px before:bg-white/10 sm:before:left-6">
         {experience.map((item) => (
           <MotionDiv key={item.role} variants={fadeUp} className="relative pl-12 sm:pl-16">

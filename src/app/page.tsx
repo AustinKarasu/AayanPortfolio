@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, GitBranch } from "lucide-react";
+import { ArrowDownToLine, ArrowRight, GitBranch } from "lucide-react";
 import { HeroShowcase } from "@/components/hero-showcase";
 import { MotionDiv, MotionSection, fadeUp, stagger } from "@/components/motion";
 import { profile, principles, trustCards } from "@/lib/site-data";
@@ -11,14 +11,14 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(239,68,68,0.22),transparent_34%),linear-gradient(135deg,rgba(24,24,27,0.95),rgba(0,0,0,1)_55%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
 
-        <div className="relative mx-auto grid min-h-[calc(100vh-73px)] max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
+        <div className="relative mx-auto grid min-h-[calc(100vh-73px)] max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
           <MotionDiv initial="hidden" animate="visible" variants={stagger}>
             <MotionDiv variants={fadeUp} className="mb-5 inline-flex rounded-md border border-red-400/30 bg-red-500/10 px-3 py-2 text-sm text-red-100">
-              Available for company work and freelance projects
+              Open for part-time or freelance work
             </MotionDiv>
             <MotionDiv variants={fadeUp}>
               <p className="text-lg font-medium text-zinc-400">{profile.name}</p>
-              <h1 className="mt-4 max-w-4xl text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
+              <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
                 {profile.headline}
               </h1>
             </MotionDiv>
@@ -31,6 +31,9 @@ export default function Home() {
               </Link>
               <a href={profile.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-md border border-white/15 px-5 py-3 text-sm font-medium text-white transition hover:border-red-400/50 hover:bg-white/5">
                 <GitBranch size={17} /> GitHub
+              </a>
+              <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-md border border-white/15 px-5 py-3 text-sm font-medium text-white transition hover:border-red-400/50 hover:bg-white/5">
+                <ArrowDownToLine size={17} /> Resume
               </a>
             </MotionDiv>
           </MotionDiv>

@@ -1,5 +1,7 @@
 import { PageShell } from "@/components/page-shell";
 import { MotionDiv, fadeUp, stagger } from "@/components/motion";
+import { DetailBand } from "@/components/detail-band";
+import { BrainCircuit, ServerCog, Sparkles } from "lucide-react";
 
 const strengths = [
   "I can move between frontend, backend, server infrastructure, automation, AI tools, and creative design without losing the practical goal.",
@@ -41,6 +43,15 @@ export default function AboutPage() {
           ))}
         </MotionDiv>
       </MotionDiv>
+      <div className="mt-8">
+        <DetailBand
+          items={[
+            { title: "I build around the real task", description: "A website, bot, or server setup should solve the actual workflow instead of just looking impressive in screenshots.", icon: Sparkles },
+            { title: "I understand both UI and setup", description: "I can connect the visible interface with hosting, APIs, dashboards, panels, and deployment details.", icon: ServerCog },
+            { title: "I use AI as a workflow tool", description: "AI helps me move faster, but the decisions, cleanup, testing, and final handoff stay practical and human.", icon: BrainCircuit },
+          ]}
+        />
+      </div>
     </PageShell>
   );
 }

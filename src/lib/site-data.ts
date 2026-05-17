@@ -26,6 +26,8 @@ export const profile = {
   domain: "aayankarasu.fun",
   githubUser: "AustinKarasu",
   githubUrl: "https://github.com/AustinKarasu",
+  resumeUrl: "/Aayan_Karasu_Resume.pdf",
+  profileImage: "/aayan-profile.jpeg",
   headline: "Full-Stack Developer & Technical Freelancer",
   intro:
     "I build websites, apps, Discord bots, Minecraft and game server systems, VPS/Linux setups, AI workflows, and creative digital assets.",

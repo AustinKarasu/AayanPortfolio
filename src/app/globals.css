@@ -30,6 +30,10 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
+img {
+  max-width: 100%;
+}
+
 ::selection {
   background: rgba(239, 68, 68, 0.35);
   color: #ffffff;

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Bot, Code2, ServerCog, Sparkles } from "lucide-react";
 import { MotionDiv } from "@/components/motion";
+import { profile } from "@/lib/site-data";
 
 const stackItems = [
   { label: "Web", icon: Code2, detail: "Next.js / APIs" },
@@ -47,7 +48,7 @@ export function HeroShowcase() {
           <div className="grid gap-5 pt-5 sm:grid-cols-[0.7fr_1fr]">
             <div className="flex items-center justify-center">
               <div className="brand-orbit relative flex size-36 items-center justify-center rounded-full border border-white/10 bg-white/[0.03]">
-                <Image src="/logo.svg" alt="Aayan Karasu logo" width={86} height={86} className="rounded-2xl" priority />
+                <Image src={profile.profileImage} alt="Aayan Karasu profile photo" width={96} height={96} className="size-24 rounded-full object-cover object-[50%_34%] ring-2 ring-red-400/35" priority />
                 <span className="orbit-dot top-2" />
                 <span className="orbit-dot bottom-3 left-5 animation-delay-400" />
                 <span className="orbit-dot right-4 top-12 animation-delay-700" />
